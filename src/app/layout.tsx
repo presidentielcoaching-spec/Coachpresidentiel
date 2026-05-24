@@ -1,10 +1,21 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { PWARegister } from "@/components/PWARegister";
 
 export const metadata: Metadata = {
   title: "Afrilingua AI — Nos langues, notre héritage",
   description:
     "Apprenez, parlez et vivez les langues africaines avec l'IA. Wolof, Yoruba, Swahili, Lingala, Ewondo et bien plus — pour le continent et la diaspora.",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Afrilingua",
+  },
   keywords: [
     "langues africaines",
     "apprendre wolof",
@@ -50,7 +61,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        {children}
+        <PWARegister />
+      </body>
     </html>
   );
 }

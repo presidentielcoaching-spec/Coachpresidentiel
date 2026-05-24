@@ -2,7 +2,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { Clock, Star } from "lucide-react";
+import { hasInteractiveLesson } from "@/lib/lessons";
+import { Clock, Sparkles, Star } from "lucide-react";
 
 export default async function LeconsPage() {
   const user = (await getCurrentUser())!;
@@ -18,6 +19,12 @@ export default async function LeconsPage() {
     (acc[l.language.name] ??= []).push(l);
     return acc;
   }, {});
+
+  const completed = await prisma.lessonProgress.findMany({
+    where: { userId: user.id, completed: true },
+    select: { lessonId: true, score: true },
+  });
+  const completedSet = new Map(completed.map((c) => [c.lessonId, c.score]));
 
   return (
     <>
@@ -41,38 +48,71 @@ export default async function LeconsPage() {
               </div>
 
               <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((l, i) => (
-                  <li key={l.id}>
-                    <article className="group flex h-full flex-col rounded-2xl border border-border bg-surface-elevated p-5 transition hover:border-gold-500/60">
-                      <div className="flex items-center justify-between">
-                        <span className="rounded-full bg-primary-600/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary-200">
-                          Leçon {i + 1}
-                        </span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-gold-400">
-                          {l.category}
-                        </span>
-                      </div>
-                      <h3 className="mt-3 text-lg font-bold">{l.title}</h3>
-                      <p className="mt-1 line-clamp-2 flex-1 text-sm text-muted">
-                        {l.description}
-                      </p>
-                      <div className="mt-4 flex items-center justify-between text-xs text-muted">
-                        <span className="inline-flex items-center gap-1">
-                          <Clock size={12} /> {l.durationMin} min
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-gold-400">
-                          <Star size={12} /> +20 XP
-                        </span>
-                      </div>
-                      <button
-                        type="button"
-                        className="mt-4 rounded-full bg-gold-500 px-4 py-2 text-xs font-bold text-[#1a0f00] transition hover:bg-gold-400"
-                      >
-                        Commencer la leçon
-                      </button>
-                    </article>
-                  </li>
-                ))}
+                {items.map((l, i) => {
+                  const interactive = hasInteractiveLesson(
+                    l.language.code,
+                    l.slug,
+                  );
+                  const lessonKey = `${l.language.code}/${l.slug}`;
+                  const score = completedSet.get(lessonKey);
+                  const href = interactive
+                    ? `/lecons/${l.language.code}/${l.slug}`
+                    : "#";
+                  return (
+                    <li key={l.id}>
+                      <article className="group flex h-full flex-col rounded-2xl border border-border bg-surface-elevated p-5 transition hover:border-gold-500/60">
+                        <div className="flex items-center justify-between">
+                          <span className="rounded-full bg-primary-600/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary-200">
+                            Leçon {i + 1}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            {score != null && (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-african-green/20 px-2 py-0.5 text-[10px] font-bold text-african-green">
+                                ✓ {score}%
+                              </span>
+                            )}
+                            {interactive && (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-gold-500/20 px-2 py-0.5 text-[10px] font-bold text-gold-400">
+                                <Sparkles size={10} /> jouable
+                              </span>
+                            )}
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-gold-400">
+                              {l.category}
+                            </span>
+                          </div>
+                        </div>
+                        <h3 className="mt-3 text-lg font-bold">{l.title}</h3>
+                        <p className="mt-1 line-clamp-2 flex-1 text-sm text-muted">
+                          {l.description}
+                        </p>
+                        <div className="mt-4 flex items-center justify-between text-xs text-muted">
+                          <span className="inline-flex items-center gap-1">
+                            <Clock size={12} /> {l.durationMin} min
+                          </span>
+                          <span className="inline-flex items-center gap-1 text-gold-400">
+                            <Star size={12} /> +50 XP
+                          </span>
+                        </div>
+                        {interactive ? (
+                          <Link
+                            href={href}
+                            className="mt-4 block rounded-full bg-gold-500 px-4 py-2 text-center text-xs font-bold text-[#1a0f00] transition hover:bg-gold-400"
+                          >
+                            {score != null ? "Refaire la leçon" : "Commencer"}
+                          </Link>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled
+                            className="mt-4 rounded-full border border-border bg-background/40 px-4 py-2 text-xs font-semibold text-muted"
+                          >
+                            Bientôt disponible
+                          </button>
+                        )}
+                      </article>
+                    </li>
+                  );
+                })}
               </ul>
             </section>
           ))}

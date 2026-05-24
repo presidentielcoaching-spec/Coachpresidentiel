@@ -32,9 +32,10 @@ yarn-error.log*
 .env*.local
 .env
 
-# prisma local db
+# prisma local db (Prisma resolves the schema-relative path, so it lands under prisma/prisma/)
 /prisma/*.db
 /prisma/*.db-journal
+/prisma/prisma/
 /prisma/migrations
 
 # vercel

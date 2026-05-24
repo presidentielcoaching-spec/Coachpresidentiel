@@ -1,17 +1,24 @@
 import { PageHeader } from "@/components/PageHeader";
+import { getCurrentUser } from "@/lib/auth";
 import { Check, Crown } from "lucide-react";
+import { CheckoutButtons } from "./CheckoutButtons";
 
 const FEATURES = [
   "Toutes les 21+ langues",
   "Leçons illimitées",
   "IA conversationnelle illimitée",
-  "Mode hors ligne",
+  "Mode hors ligne (PWA)",
   "Certificats officiels",
   "Contenu culturel exclusif",
   "Sans publicité",
 ];
 
-export default function BoutiquePage() {
+export default async function BoutiquePage() {
+  const user = (await getCurrentUser())!;
+  const hasStripe = Boolean(process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID);
+  const supportEmail =
+    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "premium@afrilingua.ai";
+
   return (
     <>
       <PageHeader
@@ -35,7 +42,7 @@ export default function BoutiquePage() {
               <span className="text-foreground/75">/ mois</span>
             </div>
             <p className="mt-1 text-xs text-muted">
-              Paiement Orange Money, Wave, Carte, PayPal · Annulable à tout moment
+              Paiement Carte (Stripe), Orange Money, Wave · Annulable à tout moment
             </p>
 
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -47,9 +54,13 @@ export default function BoutiquePage() {
               ))}
             </ul>
 
-            <button className="mt-8 w-full rounded-full bg-gold-500 px-5 py-4 text-base font-bold text-[#1a0f00] shadow-xl shadow-gold-500/30 transition hover:bg-gold-400">
-              Passer Premium — 5€/mois
-            </button>
+            <div className="mt-8">
+              <CheckoutButtons
+                isPremium={user.isPremium}
+                hasStripe={hasStripe}
+                supportEmail={supportEmail}
+              />
+            </div>
           </div>
         </article>
       </div>

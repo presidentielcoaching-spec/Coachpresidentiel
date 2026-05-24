@@ -99,14 +99,84 @@ middleware.ts                 # Garde-fou sur /dashboard, /lecons, /ia…
 | `/boutique`    | Pass Premium                                           |
 | `/parametres`  | Profil, préférences, déconnexion                       |
 
+## Paiements
+
+### Stripe (cartes — fonctionnel out-of-the-box)
+1. Crée un produit dans [Stripe Dashboard](https://dashboard.stripe.com/test/products) :
+   « Pass Premium Afrilingua », **5€ EUR récurrent mensuel** → copie le `price_...`.
+2. Dans Settings → API keys : copie ta `sk_test_...` (ou `sk_live_...`).
+3. Renseigne `STRIPE_SECRET_KEY` et `STRIPE_PRICE_ID` dans `.env`.
+4. Pour les webhooks en local :
+   ```bash
+   stripe listen --forward-to localhost:3000/api/webhooks/stripe
+   ```
+   copie le `whsec_...` affiché dans `STRIPE_WEBHOOK_SECRET`.
+5. En prod (Vercel) : ajoute un endpoint webhook → `https://<ton-domaine>/api/webhooks/stripe`
+   et écoute les events `checkout.session.completed`, `customer.subscription.updated`,
+   `customer.subscription.deleted`.
+
+Le webhook met automatiquement à jour `User.isPremium`, `stripeSubscriptionId`,
+`premiumUntil`.
+
+### Orange Money / Wave (activation manuelle)
+Ces deux fournisseurs exigent des contrats marchands KYC qu'on ne peut pas
+intégrer en quelques minutes. Le flux actuel :
+- L'utilisateur saisit son numéro → on crée une `PendingPayment` en DB
+- On lui ouvre un lien WhatsApp pré-rempli vers ton numéro support
+  (configure `NEXT_PUBLIC_SUPPORT_WHATSAPP`)
+- Tu vérifies le paiement, puis flippes `isPremium=true` manuellement
+  (depuis Prisma Studio : `pnpm exec prisma studio`).
+
+Pour automatiser plus tard : intégrer l'API Intouch / CinetPay (gateway
+multi-providers incluant Orange Money et Wave).
+
+## IA Conversationnelle (Claude)
+
+`/ia` utilise **Claude Sonnet 4.6** via le SDK officiel `@anthropic-ai/sdk`.
+- Streaming SSE → l'UI affiche la réponse au fil de l'eau
+- Prompt caching activé sur le system prompt (~90% moins cher après le 1er appel)
+- ASR / TTS dans le **navigateur** (Web Speech API — gratuit, multilingue) :
+  micro pour parler, lecture automatique des réponses
+- 6 scénarios pré-configurés (au marché, en famille, en taxi…)
+
+Renseigne `ANTHROPIC_API_KEY` (obtenable sur
+[console.anthropic.com](https://console.anthropic.com)).
+
+## Moteur de leçons
+
+`/lecons/[langCode]/[slug]` — flux interactif :
+1. **Intro** — contexte culturel
+2. **Flashcards vocabulaire** — natif ↔ français, TTS sur clic
+3. **Quiz** QCM avec score en direct
+4. **Prononciation** — ASR navigateur évalue ta diction par overlap de mots
+
+Progrès stocké en DB (`LessonProgress`), +50 XP à la complétion.
+Leçons "jouables" actuellement : Ewondo, Wolof, Yoruba, Swahili (salutations).
+Étends `src/lib/lessons.ts` pour en ajouter.
+
+## PWA (installable + offline)
+
+- `public/manifest.json` — installable comme app native
+- `public/sw.js` — service worker, network-first pour HTML, cache-first
+  pour assets statiques, fallback `/offline`
+- Service worker activé uniquement en prod (pas de cache pendant le dev)
+
+Pour tester : `pnpm build && pnpm start`, ouvre Chrome DevTools → Application →
+Service Workers.
+
 ## Roadmap
 
-- [ ] Brancher un vrai LLM (Claude API ou OpenAI) sur `/ia` + ASR / TTS
-- [ ] Système de quiz et notation de prononciation
+- [x] ~~Brancher un vrai LLM (Claude API) sur `/ia` + ASR/TTS~~
+- [x] ~~Système de quiz et notation de prononciation~~
+- [x] ~~Paiements Stripe (carte) pour Premium~~
+- [x] ~~Capture d'intention Orange Money / Wave~~
+- [x] ~~PWA installable + service worker~~
+- [ ] Intégrer Intouch / CinetPay pour automatiser Orange Money / Wave
 - [ ] App mobile React Native (partage du design system)
-- [ ] Paiements Orange Money, Wave, Stripe pour Premium
-- [ ] Mode hors ligne (PWA + Service Worker)
+- [ ] Multi-langue UI (anglais, portugais, arabe pour la diaspora)
+- [ ] Reconnaissance vocale serveur (Whisper) pour les langues non-supportées par le navigateur
 - [ ] Programme de contributeurs natifs (audio, proverbes, contes)
+- [ ] Système de recommandation IA (parcours personnalisés)
 
 ---
 

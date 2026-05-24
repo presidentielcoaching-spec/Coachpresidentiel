@@ -53,6 +53,7 @@ export const config = {
     "/classement/:path*",
     "/certificats/:path*",
     "/parametres/:path*",
+    "/boutique/:path*",
     "/login",
     "/signup",
   ],

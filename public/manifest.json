@@ -1,0 +1,39 @@
+{
+  "name": "Afrilingua AI — Nos langues, notre héritage",
+  "short_name": "Afrilingua",
+  "description": "Apprends les langues africaines avec l'IA. Le Duolingo des langues africaines.",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0614",
+  "theme_color": "#0b0614",
+  "lang": "fr",
+  "categories": ["education", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mes leçons",
+      "url": "/lecons",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "IA Conversation",
+      "url": "/ia",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

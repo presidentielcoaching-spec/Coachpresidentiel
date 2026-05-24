@@ -21,11 +21,16 @@ model User {
   xp           Int      @default(0)
   streakDays   Int      @default(0)
   isPremium    Boolean  @default(false)
+  premiumUntil DateTime?
+  stripeCustomerId     String?  @unique
+  stripeSubscriptionId String?  @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  languages UserLanguage[]
-  activities Activity[]
+  languages       UserLanguage[]
+  activities      Activity[]
+  lessonProgress  LessonProgress[]
+  pendingPayments PendingPayment[]
 }
 
 model Language {
@@ -79,6 +84,37 @@ model Activity {
   kind      String
   payload   String?
   createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LessonProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  step        String   @default("intro")
+  completed   Boolean  @default(false)
+  score       Int      @default(0)
+  attempts    Int      @default(0)
+  completedAt DateTime?
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}
+
+model PendingPayment {
+  id          String   @id @default(cuid())
+  userId      String
+  provider    String
+  phone       String?
+  email       String?
+  amountCents Int      @default(500)
+  currency    String   @default("EUR")
+  status      String   @default("pending")
+  notes       String?
+  createdAt   DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
