@@ -65,7 +65,7 @@ export function Pricing() {
             </ul>
 
             <a
-              href="#inscription"
+              href="/signup"
               className="mt-8 block w-full rounded-full border border-border bg-surface px-5 py-3 text-center text-sm font-semibold text-foreground transition hover:border-primary-400"
             >
               Commencer gratuitement
@@ -115,7 +115,7 @@ export function Pricing() {
               </ul>
 
               <a
-                href="#inscription"
+                href="/signup"
                 className="mt-8 block w-full rounded-full bg-gold-500 px-5 py-3 text-center text-sm font-bold text-[#1a0f00] shadow-lg shadow-gold-500/25 transition hover:bg-gold-400"
               >
                 Passer Premium — 5€/mois

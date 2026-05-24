@@ -28,7 +28,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#inscription"
+              href="/signup"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-4 text-base font-semibold text-[#1a0f00] shadow-xl shadow-gold-500/25 transition hover:bg-gold-400"
             >
               Commencer gratuitement

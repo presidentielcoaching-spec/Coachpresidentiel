@@ -1,0 +1,84 @@
+// Afrilingua AI — Prisma schema
+// SQLite for dev. For production (Vercel), switch provider to "postgresql"
+// and set DATABASE_URL to a hosted Postgres (Neon, Vercel Postgres, Supabase).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  avatar       String?
+  level        Int      @default(1)
+  xp           Int      @default(0)
+  streakDays   Int      @default(0)
+  isPremium    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  languages UserLanguage[]
+  activities Activity[]
+}
+
+model Language {
+  id          String  @id @default(cuid())
+  code        String  @unique
+  name        String
+  region      String
+  speakers    String
+  greeting    String
+  emoji       String
+  hue         String
+
+  lessons   Lesson[]
+  learners  UserLanguage[]
+}
+
+model UserLanguage {
+  id         String   @id @default(cuid())
+  userId     String
+  languageId String
+  level      Int      @default(1)
+  progress   Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  language Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, languageId])
+}
+
+model Lesson {
+  id          String  @id @default(cuid())
+  languageId  String
+  slug        String
+  title       String
+  description String
+  durationMin Int     @default(10)
+  level       String  @default("debutant")
+  category    String  @default("conversation")
+  thumbnail   String?
+  orderIndex  Int     @default(0)
+
+  language Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  @@unique([languageId, slug])
+}
+
+model Activity {
+  id        String   @id @default(cuid())
+  userId    String
+  kind      String
+  payload   String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

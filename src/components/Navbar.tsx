@@ -5,11 +5,11 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
 const NAV_LINKS = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#langues", label: "Langues" },
-  { href: "#fonctionnalites", label: "Fonctionnalités" },
-  { href: "#tarifs", label: "Tarifs" },
-  { href: "#apropos", label: "À propos" },
+  { href: "/#accueil", label: "Accueil" },
+  { href: "/langues", label: "Langues" },
+  { href: "/#fonctionnalites", label: "Fonctionnalités" },
+  { href: "/#tarifs", label: "Tarifs" },
+  { href: "/#apropos", label: "À propos" },
 ];
 
 export function Navbar() {
@@ -37,13 +37,13 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href="#connexion"
+            href="/login"
             className="rounded-full px-4 py-2 text-sm font-medium text-foreground/85 transition hover:text-gold-400"
           >
             Connexion
           </a>
           <a
-            href="#inscription"
+            href="/signup"
             className="rounded-full bg-gold-500 px-5 py-2 text-sm font-semibold text-[#1a0f00] shadow-lg shadow-gold-500/20 transition hover:bg-gold-400"
           >
             S&apos;inscrire
@@ -77,14 +77,14 @@ export function Navbar() {
             ))}
             <li className="flex gap-2 pt-2">
               <a
-                href="#connexion"
+                href="/login"
                 onClick={() => setOpen(false)}
                 className="flex-1 rounded-full border border-border px-4 py-2 text-center text-sm font-medium"
               >
                 Connexion
               </a>
               <a
-                href="#inscription"
+                href="/signup"
                 onClick={() => setOpen(false)}
                 className="flex-1 rounded-full bg-gold-500 px-4 py-2 text-center text-sm font-semibold text-[#1a0f00]"
               >

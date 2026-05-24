@@ -104,7 +104,7 @@ export function Languages() {
             </p>
           </div>
           <a
-            href="#toutes-les-langues"
+            href="/langues"
             className="hidden shrink-0 items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-2 text-sm font-medium text-foreground/85 transition hover:border-primary-400 hover:text-gold-400 md:inline-flex"
           >
             Voir toutes les langues
