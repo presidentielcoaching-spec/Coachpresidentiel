@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
 
   const supportWhatsapp = process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP ?? "";
   const message = encodeURIComponent(
-    `Bonjour, je suis ${user.name} (${user.email}). Je veux activer mon Pass Premium Afrilingua AI via ${provider === "wave" ? "Wave" : "Orange Money"} depuis le numéro ${phone}. Ma référence : ${pending.id}`,
+    `Bonjour, je suis ${user.name} (${user.email}). Je veux activer mon Pass Premium Kemetlingua AI via ${provider === "wave" ? "Wave" : "Orange Money"} depuis le numéro ${phone}. Ma référence : ${pending.id}`,
   );
   const whatsappUrl = supportWhatsapp
     ? `https://wa.me/${supportWhatsapp}?text=${message}`

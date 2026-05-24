@@ -54,13 +54,13 @@ async function main() {
     }
   }
 
-  console.log("Seeding demo user (koffi@afrilingua.ai / koffi1234)…");
+  console.log("Seeding demo user (koffi@kemetlingua.com / koffi1234)…");
   const passwordHash = await bcrypt.hash("koffi1234", 10);
   const user = await prisma.user.upsert({
-    where: { email: "koffi@afrilingua.ai" },
+    where: { email: "koffi@kemetlingua.com" },
     update: {},
     create: {
-      email: "koffi@afrilingua.ai",
+      email: "koffi@kemetlingua.com",
       passwordHash,
       name: "Koffi A.",
       level: 7,
@@ -88,18 +88,18 @@ async function main() {
   console.log("Seeding community members (for leaderboard)…");
   const dummyHash = await bcrypt.hash("demo123456", 10);
   const COMMUNITY = [
-    { email: "amina@afrilingua.demo", name: "Amina T.", xp: 3240, level: 9, streak: 28 },
-    { email: "chidi@afrilingua.demo", name: "Chidi B.", xp: 980, level: 5, streak: 7 },
-    { email: "fatou@afrilingua.demo", name: "Fatou N.", xp: 870, level: 5, streak: 15 },
-    { email: "kwame@afrilingua.demo", name: "Kwame S.", xp: 760, level: 4, streak: 4 },
-    { email: "aisha@afrilingua.demo", name: "Aisha M.", xp: 2540, level: 8, streak: 22 },
-    { email: "thabo@afrilingua.demo", name: "Thabo D.", xp: 2110, level: 8, streak: 18 },
-    { email: "zainab@afrilingua.demo", name: "Zainab R.", xp: 1880, level: 7, streak: 11 },
-    { email: "omar@afrilingua.demo", name: "Omar K.", xp: 1640, level: 7, streak: 9 },
-    { email: "ngozi@afrilingua.demo", name: "Ngozi O.", xp: 1420, level: 6, streak: 14 },
-    { email: "samira@afrilingua.demo", name: "Samira L.", xp: 1090, level: 6, streak: 5 },
-    { email: "tariq@afrilingua.demo", name: "Tariq B.", xp: 690, level: 4, streak: 3 },
-    { email: "imani@afrilingua.demo", name: "Imani W.", xp: 540, level: 3, streak: 2 },
+    { email: "amina@kemetlingua.demo", name: "Amina T.", xp: 3240, level: 9, streak: 28 },
+    { email: "chidi@kemetlingua.demo", name: "Chidi B.", xp: 980, level: 5, streak: 7 },
+    { email: "fatou@kemetlingua.demo", name: "Fatou N.", xp: 870, level: 5, streak: 15 },
+    { email: "kwame@kemetlingua.demo", name: "Kwame S.", xp: 760, level: 4, streak: 4 },
+    { email: "aisha@kemetlingua.demo", name: "Aisha M.", xp: 2540, level: 8, streak: 22 },
+    { email: "thabo@kemetlingua.demo", name: "Thabo D.", xp: 2110, level: 8, streak: 18 },
+    { email: "zainab@kemetlingua.demo", name: "Zainab R.", xp: 1880, level: 7, streak: 11 },
+    { email: "omar@kemetlingua.demo", name: "Omar K.", xp: 1640, level: 7, streak: 9 },
+    { email: "ngozi@kemetlingua.demo", name: "Ngozi O.", xp: 1420, level: 6, streak: 14 },
+    { email: "samira@kemetlingua.demo", name: "Samira L.", xp: 1090, level: 6, streak: 5 },
+    { email: "tariq@kemetlingua.demo", name: "Tariq B.", xp: 690, level: 4, streak: 3 },
+    { email: "imani@kemetlingua.demo", name: "Imani W.", xp: 540, level: 3, streak: 2 },
   ];
   for (const m of COMMUNITY) {
     await prisma.user.upsert({

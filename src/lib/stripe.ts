@@ -6,7 +6,7 @@ export const stripe = key
   ? new Stripe(key, {
       apiVersion: "2026-04-22.dahlia",
       typescript: true,
-      appInfo: { name: "Afrilingua AI", version: "0.1.0" },
+      appInfo: { name: "Kemetlingua AI", version: "0.1.0" },
     })
   : null;
 

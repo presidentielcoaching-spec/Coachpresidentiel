@@ -1,4 +1,4 @@
-// Afrilingua AI — Prisma schema
+// Kemetlingua AI — Prisma schema
 // SQLite for dev. For production (Vercel), switch provider to "postgresql"
 // and set DATABASE_URL to a hosted Postgres (Neon, Vercel Postgres, Supabase).
 

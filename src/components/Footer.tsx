@@ -84,7 +84,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 text-xs text-muted sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Afrilingua AI. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} Kemetlingua AI. Tous droits réservés.</p>
           <p className="italic text-gold-400/80">
             « Nos langues, notre héritage. »
           </p>

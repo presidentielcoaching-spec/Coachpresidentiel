@@ -23,7 +23,7 @@ const STEPS = [
     icon: Award,
     title: "Atteignez vos objectifs",
     description:
-      "Devenez fluide et obtenez votre certificat officiel Afrilingua AI.",
+      "Devenez fluide et obtenez votre certificat officiel Kemetlingua AI.",
   },
 ];
 

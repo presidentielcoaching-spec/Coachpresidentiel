@@ -1,4 +1,4 @@
-# Afrilingua AI
+# Kemetlingua AI
 
 > **Nos langues, notre héritage.**
 > La première plateforme IA pour apprendre les langues africaines —
@@ -31,7 +31,7 @@ pnpm dev           # http://localhost:3000
 
 | Email                    | Mot de passe |
 | ------------------------ | ------------ |
-| `koffi@afrilingua.ai`    | `koffi1234`  |
+| `koffi@kemetlingua.com`    | `koffi1234`  |
 
 ## Structure
 
@@ -103,7 +103,7 @@ middleware.ts                 # Garde-fou sur /dashboard, /lecons, /ia…
 
 ### Stripe (cartes — fonctionnel out-of-the-box)
 1. Crée un produit dans [Stripe Dashboard](https://dashboard.stripe.com/test/products) :
-   « Pass Premium Afrilingua », **5€ EUR récurrent mensuel** → copie le `price_...`.
+   « Pass Premium Kemetlingua », **5€ EUR récurrent mensuel** → copie le `price_...`.
 2. Dans Settings → API keys : copie ta `sk_test_...` (ou `sk_live_...`).
 3. Renseigne `STRIPE_SECRET_KEY` et `STRIPE_PRICE_ID` dans `.env`.
 4. Pour les webhooks en local :
@@ -180,4 +180,4 @@ Service Workers.
 
 ---
 
-© Afrilingua AI · Made in 🌍 with ❤️
+© Kemetlingua AI · Made in 🌍 with ❤️

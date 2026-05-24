@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
 import { prisma } from "./db";
 
-const COOKIE_NAME = "afrilingua_session";
+const COOKIE_NAME = "kemetlingua_session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 
 function getSecret() {

@@ -17,13 +17,13 @@ export default async function BoutiquePage() {
   const user = (await getCurrentUser())!;
   const hasStripe = Boolean(process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID);
   const supportEmail =
-    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "premium@afrilingua.ai";
+    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "premium@kemetlingua.com";
 
   return (
     <>
       <PageHeader
         title="Boutique"
-        subtitle="Débloque tout le potentiel d'Afrilingua AI avec Premium."
+        subtitle="Débloque tout le potentiel d'Kemetlingua AI avec Premium."
       />
 
       <div className="mx-auto max-w-2xl">
@@ -34,7 +34,7 @@ export default async function BoutiquePage() {
           <div className="relative">
             <div className="flex items-center gap-2 text-gold-400">
               <Crown size={24} />
-              <h2 className="text-2xl font-bold">Pass Premium Afrilingua</h2>
+              <h2 className="text-2xl font-bold">Pass Premium Kemetlingua</h2>
             </div>
 
             <div className="mt-6 flex items-baseline gap-2">

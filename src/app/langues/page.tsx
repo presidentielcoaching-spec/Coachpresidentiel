@@ -5,7 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 export const metadata = {
-  title: "Toutes les langues — Afrilingua AI",
+  title: "Toutes les langues — Kemetlingua AI",
   description:
     "Découvrez les 21+ langues africaines disponibles : Wolof, Swahili, Yoruba, Lingala, Ewondo, Bambara, Hausa, Akan, Zulu et bien d'autres.",
 };

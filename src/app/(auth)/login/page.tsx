@@ -57,7 +57,7 @@ export default function LoginPage() {
       <div className="mt-8 rounded-xl border border-border bg-surface-elevated/60 px-4 py-3 text-xs text-muted">
         <p className="font-semibold text-foreground/80">Compte de démo</p>
         <p className="mt-1">
-          <code className="text-gold-400">koffi@afrilingua.ai</code> ·{" "}
+          <code className="text-gold-400">koffi@kemetlingua.com</code> ·{" "}
           <code className="text-gold-400">koffi1234</code>
         </p>
       </div>

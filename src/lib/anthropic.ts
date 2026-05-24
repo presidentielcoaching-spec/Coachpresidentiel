@@ -17,7 +17,7 @@ export function buildCoachSystemPrompt(language: string, scenario?: string) {
     ? `\nScénario en cours : ${scenario}. Cadre la conversation dans ce contexte.`
     : "";
 
-  return `Tu es Mbote, le coach IA conversationnel d'Afrilingua AI — la plateforme de référence pour apprendre les langues africaines.
+  return `Tu es Mbote, le coach IA conversationnel d'Kemetlingua AI — la plateforme de référence pour apprendre les langues africaines.
 
 Tu enseignes le ${language} à un apprenant francophone, idéalement membre de la diaspora africaine ou du continent qui se reconnecte à ses racines.
 

@@ -12,7 +12,7 @@ export default function CertificatsPage() {
     <>
       <PageHeader
         title="Certificats"
-        subtitle="Décroche tes certificats officiels Afrilingua AI."
+        subtitle="Décroche tes certificats officiels Kemetlingua AI."
       />
 
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

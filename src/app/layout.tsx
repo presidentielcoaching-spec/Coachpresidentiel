@@ -3,7 +3,7 @@ import "./globals.css";
 import { PWARegister } from "@/components/PWARegister";
 
 export const metadata: Metadata = {
-  title: "Afrilingua AI — Nos langues, notre héritage",
+  title: "Kemetlingua AI — Nos langues, notre héritage",
   description:
     "Apprenez, parlez et vivez les langues africaines avec l'IA. Wolof, Yoruba, Swahili, Lingala, Ewondo et bien plus — pour le continent et la diaspora.",
   manifest: "/manifest.json",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Afrilingua",
+    title: "Kemetlingua",
   },
   keywords: [
     "langues africaines",
@@ -23,11 +23,11 @@ export const metadata: Metadata = {
     "apprendre swahili",
     "Duolingo africain",
     "EdTech Afrique",
-    "Afrilingua",
+    "Kemetlingua",
   ],
-  authors: [{ name: "Afrilingua AI" }],
+  authors: [{ name: "Kemetlingua AI" }],
   openGraph: {
-    title: "Afrilingua AI — Nos langues, notre héritage",
+    title: "Kemetlingua AI — Nos langues, notre héritage",
     description:
       "La première plateforme IA pour apprendre les langues africaines. Reconnecte-toi à tes racines.",
     type: "website",

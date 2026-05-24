@@ -19,7 +19,7 @@ export async function middleware(req: NextRequest) {
   const isAuthPage = AUTH_PAGES.some((p) => pathname.startsWith(p));
   if (!isProtected && !isAuthPage) return NextResponse.next();
 
-  const token = req.cookies.get("afrilingua_session")?.value;
+  const token = req.cookies.get("kemetlingua_session")?.value;
   let valid = false;
   if (token && process.env.AUTH_SECRET) {
     try {

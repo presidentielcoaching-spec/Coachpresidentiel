@@ -10,7 +10,7 @@ export function Logo({ size = 44, showTagline = true, className }: LogoProps) {
       <AfricaMark size={size} />
       <div className="flex flex-col leading-none">
         <span className="text-gradient-gold text-xl font-extrabold tracking-wide sm:text-2xl">
-          AFRILINGUA <span className="text-african-green">A</span>
+          KEMETLINGUA <span className="text-african-green">A</span>
           <span className="text-african-orange">I</span>
         </span>
         {showTagline && (

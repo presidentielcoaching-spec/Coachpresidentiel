@@ -3,7 +3,7 @@ import { Quote } from "lucide-react";
 const TESTIMONIALS = [
   {
     quote:
-      "Grâce à Afrilingua, j'ai pu parler Ewondo avec ma grand-mère pour la première fois. C'était bouleversant.",
+      "Grâce à Kemetlingua, j'ai pu parler Ewondo avec ma grand-mère pour la première fois. C'était bouleversant.",
     author: "Koffi A.",
     role: "Diaspora · Paris",
   },

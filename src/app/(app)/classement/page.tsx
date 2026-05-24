@@ -15,7 +15,7 @@ export default async function ClassementPage() {
     <>
       <PageHeader
         title="Classements"
-        subtitle="Mesure tes progrès face à la communauté Afrilingua."
+        subtitle="Mesure tes progrès face à la communauté Kemetlingua."
       />
 
       <div className="grid gap-6 lg:grid-cols-3">
