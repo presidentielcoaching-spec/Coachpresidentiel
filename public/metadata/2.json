@@ -1,0 +1,21 @@
+{
+  "name": "Sankofa Legacy #002 — ZAMZUU",
+  "description": "La Sentinelle. Le Gardien-Guerrier. Sa coiffe de plumes capte le vent des plaines et son bouclier neutralise les énergies adverses. Il protège les frontières spirituelles du détenteur. Origine : Afrique de l'Est, peuple Maasai. Pièce 1-of-1 de la collection Genesis Sankofa Legacy.",
+  "image": "ipfs://REMPLACER_PAR_CID_IMAGE_2",
+  "image_url": "https://sankofa-legacy.xyz/guardians/2.jpg",
+  "external_url": "https://sankofa-legacy.xyz/gardien/zamzuu",
+  "background_color": "3A0D0D",
+  "attributes": [
+    { "trait_type": "Gardien", "value": "ZAMZUU" },
+    { "trait_type": "Titre", "value": "La Sentinelle" },
+    { "trait_type": "Tribu", "value": "Maasai" },
+    { "trait_type": "Origine", "value": "Kenya / Tanzanie" },
+    { "trait_type": "Élément", "value": "Terre" },
+    { "trait_type": "Domaine", "value": "Protection & Guerre Sacrée" },
+    { "trait_type": "Aura", "value": "Plumes Noir / Crème" },
+    { "trait_type": "Énergie", "value": "Sentinelle" },
+    { "trait_type": "Édition", "value": "Genesis" },
+    { "trait_type": "Rareté", "value": "1-of-1" },
+    { "display_type": "number", "trait_type": "Numéro de série", "value": 2, "max_value": 5 }
+  ]
+}

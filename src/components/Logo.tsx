@@ -7,15 +7,14 @@ type LogoProps = {
 export function Logo({ size = 44, showTagline = true, className }: LogoProps) {
   return (
     <div className={`flex items-center gap-3 ${className ?? ""}`}>
-      <AfricaMark size={size} />
+      <SankofaMark size={size} />
       <div className="flex flex-col leading-none">
-        <span className="text-gradient-gold text-xl font-extrabold tracking-wide sm:text-2xl">
-          AFRILINGUA <span className="text-african-green">A</span>
-          <span className="text-african-orange">I</span>
+        <span className="font-display text-xl font-extrabold tracking-[0.15em] text-gradient-gold sm:text-2xl">
+          SANKOFA
         </span>
         {showTagline && (
-          <span className="mt-1 text-[10px] font-light tracking-[0.18em] text-muted uppercase sm:text-[11px]">
-            Nos langues, notre héritage
+          <span className="mt-1 text-[10px] font-light tracking-[0.32em] text-muted uppercase sm:text-[11px]">
+            Legacy · The Ether Guardians
           </span>
         )}
       </div>
@@ -23,7 +22,7 @@ export function Logo({ size = 44, showTagline = true, className }: LogoProps) {
   );
 }
 
-function AfricaMark({ size = 44 }: { size?: number }) {
+function SankofaMark({ size = 44 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -34,49 +33,34 @@ function AfricaMark({ size = 44 }: { size?: number }) {
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="africa-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f5b942" />
-          <stop offset="45%" stopColor="#3fa34d" />
-          <stop offset="100%" stopColor="#e3672e" />
-        </linearGradient>
-        <linearGradient id="africa-stroke" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="sankofa-grad" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#fde68a" />
+          <stop offset="50%" stopColor="#f5b942" />
           <stop offset="100%" stopColor="#e0a022" />
         </linearGradient>
+        <radialGradient id="sankofa-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#7c3aed" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      {/* Stylized Africa silhouette */}
+      <circle cx="32" cy="32" r="30" fill="url(#sankofa-glow)" />
+      {/* Stylized Sankofa heart / Adinkra — two spiraling curves meeting */}
       <path
-        d="M22 4 C30 4 38 6 44 12 C49 17 52 24 52 32 C52 40 49 47 44 53 C40 58 35 60 31 60 L29 56 L26 58 L24 54 L21 56 L19 50 L15 48 L13 42 L10 38 L12 32 L10 26 L14 20 L13 14 L17 10 L22 4 Z"
-        fill="url(#africa-grad)"
-        stroke="url(#africa-stroke)"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      {/* Madagascar dot */}
-      <circle cx="53" cy="48" r="2" fill="#f5b942" />
-      {/* Kente-like geometric overlays */}
-      <path
-        d="M22 14 L28 18 L24 22 Z"
-        fill="#0b0614"
-        opacity="0.35"
-      />
-      <path
-        d="M18 30 L24 34 L20 40 L16 36 Z"
-        fill="#0b0614"
-        opacity="0.25"
-      />
-      <path
-        d="M30 38 L36 42 L34 48 L28 46 Z"
-        fill="#0b0614"
-        opacity="0.3"
-      />
-      {/* Highlight sparkle */}
-      <circle cx="20" cy="10" r="1.6" fill="#fde68a" />
-      <path
-        d="M20 6 L20 14 M16 10 L24 10"
-        stroke="#fde68a"
-        strokeWidth="0.8"
+        d="M32 8 C20 8 12 18 12 30 C12 42 22 50 32 50 C42 50 52 42 52 30 C52 22 46 16 38 16 C32 16 28 20 28 26 C28 30 31 33 35 33 C38 33 40 31 40 28"
+        stroke="url(#sankofa-grad)"
+        strokeWidth="3"
         strokeLinecap="round"
+        fill="none"
+      />
+      {/* Central dot — the seed */}
+      <circle cx="40" cy="28" r="2.2" fill="#fde68a" />
+      {/* Lower flourishes */}
+      <path
+        d="M22 52 L32 58 L42 52"
+        stroke="url(#sankofa-grad)"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        fill="none"
       />
     </svg>
   );

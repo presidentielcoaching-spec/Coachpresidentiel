@@ -1,0 +1,21 @@
+{
+  "name": "Sankofa Legacy #003 — TELLEM",
+  "description": "Le Lecteur d'Étoiles. Le Gardien Astronome. Bien avant les télescopes, son peuple cartographiait Sirius B. Son masque est un instrument céleste : antennes vers les ancêtres, regard tourné vers ce qui n'est pas encore arrivé. Origine : Pays Dogon, Mali. Pièce 1-of-1 de la collection Genesis Sankofa Legacy.",
+  "image": "ipfs://REMPLACER_PAR_CID_IMAGE_3",
+  "image_url": "https://sankofa-legacy.xyz/guardians/3.jpg",
+  "external_url": "https://sankofa-legacy.xyz/gardien/tellem",
+  "background_color": "050A2E",
+  "attributes": [
+    { "trait_type": "Gardien", "value": "TELLEM" },
+    { "trait_type": "Titre", "value": "Le Lecteur d'Étoiles" },
+    { "trait_type": "Tribu", "value": "Dogon" },
+    { "trait_type": "Origine", "value": "Mali" },
+    { "trait_type": "Élément", "value": "Cosmos" },
+    { "trait_type": "Domaine", "value": "Astronomie sacrée" },
+    { "trait_type": "Aura", "value": "Bleu Nuit / Or" },
+    { "trait_type": "Énergie", "value": "Oracle" },
+    { "trait_type": "Édition", "value": "Genesis" },
+    { "trait_type": "Rareté", "value": "1-of-1" },
+    { "display_type": "number", "trait_type": "Numéro de série", "value": 3, "max_value": 5 }
+  ]
+}

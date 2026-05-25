@@ -1,0 +1,21 @@
+{
+  "name": "Sankofa Legacy #001 — NUBIAN 329",
+  "description": "L'Architecte des Empires. Premier Gardien de l'Ether. Son masque encode les plans de Méroé et les algorithmes pharaoniques. Il transmet à son détenteur la discipline de bâtir ce qui dure mille ans. Origine : Nubie / Kemet. Pièce 1-of-1 de la collection Genesis Sankofa Legacy.",
+  "image": "ipfs://REMPLACER_PAR_CID_IMAGE_1",
+  "image_url": "https://sankofa-legacy.xyz/guardians/1.jpg",
+  "external_url": "https://sankofa-legacy.xyz/gardien/nubian-329",
+  "background_color": "0F3A8A",
+  "attributes": [
+    { "trait_type": "Gardien", "value": "NUBIAN 329" },
+    { "trait_type": "Titre", "value": "L'Architecte des Empires" },
+    { "trait_type": "Tribu", "value": "Nubienne" },
+    { "trait_type": "Origine", "value": "Kemet / Soudan" },
+    { "trait_type": "Élément", "value": "Soleil" },
+    { "trait_type": "Domaine", "value": "Architecture & Civilisation" },
+    { "trait_type": "Aura", "value": "Bleu Cobalt / Or" },
+    { "trait_type": "Énergie", "value": "Bâtisseur" },
+    { "trait_type": "Édition", "value": "Genesis" },
+    { "trait_type": "Rareté", "value": "1-of-1" },
+    { "display_type": "number", "trait_type": "Numéro de série", "value": 1, "max_value": 5 }
+  ]
+}

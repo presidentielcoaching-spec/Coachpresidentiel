@@ -1,65 +1,63 @@
-import { Quote } from "lucide-react";
+import { Shield, ScanLine, Hand, FileSignature } from "lucide-react";
 
-const TESTIMONIALS = [
+const PILLARS = [
   {
-    quote:
-      "Grâce à Afrilingua, j'ai pu parler Ewondo avec ma grand-mère pour la première fois. C'était bouleversant.",
-    author: "Koffi A.",
-    role: "Diaspora · Paris",
+    icon: Shield,
+    title: "Vérifié on-chain",
+    desc: "Smart contract ERC-721 audité, déployé sur Base. Provenance traçable depuis le mint. Pas de pre-reveal opaque.",
   },
   {
-    quote:
-      "L'IA corrige ma prononciation Wolof en temps réel. C'est comme avoir un prof natif dans ma poche.",
-    author: "Amina T.",
-    role: "Étudiante · Dakar",
+    icon: ScanLine,
+    title: "Authentifié hors-chaîne",
+    desc: "Chaque NFT est accompagné d'une carte d'activation papier numérotée, signée à la main, avec QR de vérification.",
   },
   {
-    quote:
-      "Les proverbes et les contes m'ont reconnecté à mes racines Yoruba. Bien plus qu'une appli de langue.",
-    author: "Chidi B.",
-    role: "Diaspora · Londres",
+    icon: Hand,
+    title: "Rituel transmissible",
+    desc: "Le détenteur reçoit un protocole d'activation personnel. Transmissible avec le NFT à chaque revente.",
+  },
+  {
+    icon: FileSignature,
+    title: "Royalties créateur",
+    desc: "7.5% à l'artiste sur chaque revente perpétuelle. L'art continue de soutenir celui qui l'a fait naître.",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section className="border-t border-border/60 bg-surface/30 py-20 lg:py-28">
+    <section className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
-            Témoignages
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 px-3 py-1 text-xs font-medium tracking-[0.22em] uppercase text-gold-300">
+            Pourquoi Sankofa
           </span>
-          <h2 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            Plus qu&apos;une app —{" "}
-            <span className="text-gradient-gold">une renaissance</span>
+          <h2 className="mt-6 font-display text-4xl font-bold leading-tight sm:text-5xl">
+            Le NFT n&apos;est qu&apos;une partie.{" "}
+            <span className="text-gradient-gold">Le reste fait la valeur.</span>
           </h2>
+          <p className="mt-5 text-lg text-foreground/75">
+            Ce qui distingue Sankofa Legacy des 99% de drops qui meurent en
+            silence : un protocole de valeur que la blockchain seule ne peut pas
+            porter.
+          </p>
         </div>
 
-        <ul className="mt-14 grid gap-6 lg:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
-            <li
-              key={t.author}
-              className="relative overflow-hidden rounded-2xl border border-border bg-surface-elevated p-8"
+        <div className="mt-16 grid gap-6 md:grid-cols-2">
+          {PILLARS.map((p) => (
+            <article
+              key={p.title}
+              className="group rounded-3xl border border-border bg-surface/50 p-7 transition hover:border-gold-500/50"
             >
-              <Quote
-                size={36}
-                className="absolute right-5 top-5 text-primary-500/30"
-              />
-              <p className="text-base leading-relaxed text-foreground/90">
-                « {t.quote} »
-              </p>
-              <div className="mt-6 flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-gold-500 to-african-orange text-sm font-bold text-[#1a0f00]">
-                  {t.author[0]}
-                </span>
-                <div>
-                  <div className="text-sm font-semibold">{t.author}</div>
-                  <div className="text-xs text-muted">{t.role}</div>
-                </div>
+              <div className="grid h-12 w-12 place-items-center rounded-2xl border border-gold-500/40 bg-gold-500/10 transition group-hover:bg-gold-500/20">
+                <p.icon className="text-gold-400" size={22} />
               </div>
-            </li>
+              <h3 className="mt-5 font-display text-xl font-bold">{p.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/75">
+                {p.desc}
+              </p>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

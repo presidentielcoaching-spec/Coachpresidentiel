@@ -1,0 +1,21 @@
+{
+  "name": "Sankofa Legacy #004 — GELEDE",
+  "description": "La Matriarche. Gelede est la Mère-Source. Son masque incarne la puissance des Iyami, les Mères Anciennes. Elle restaure les cycles brisés et bénit la fertilité de tout projet né sous sa garde. Origine : Yoruba, Nigeria et Bénin. Pièce 1-of-1 de la collection Genesis Sankofa Legacy.",
+  "image": "ipfs://REMPLACER_PAR_CID_IMAGE_4",
+  "image_url": "https://sankofa-legacy.xyz/guardians/4.jpg",
+  "external_url": "https://sankofa-legacy.xyz/gardien/gelede",
+  "background_color": "1A1138",
+  "attributes": [
+    { "trait_type": "Gardien", "value": "GELEDE" },
+    { "trait_type": "Titre", "value": "La Matriarche" },
+    { "trait_type": "Tribu", "value": "Yoruba" },
+    { "trait_type": "Origine", "value": "Nigeria / Bénin" },
+    { "trait_type": "Élément", "value": "Eau" },
+    { "trait_type": "Domaine", "value": "Rituel & Renouveau" },
+    { "trait_type": "Aura", "value": "Iridescent / Or" },
+    { "trait_type": "Énergie", "value": "Matriarche" },
+    { "trait_type": "Édition", "value": "Genesis" },
+    { "trait_type": "Rareté", "value": "1-of-1" },
+    { "display_type": "number", "trait_type": "Numéro de série", "value": 4, "max_value": 5 }
+  ]
+}

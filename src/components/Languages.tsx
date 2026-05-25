@@ -1,200 +1,92 @@
-import { ArrowRight } from "lucide-react";
-
-type Language = {
-  name: string;
-  region: string;
-  speakers: string;
-  level: string;
-  progress: number;
-  emoji: string;
-  hue: string;
-};
-
-const LANGUAGES: Language[] = [
-  {
-    name: "Swahili",
-    region: "Afrique de l'Est",
-    speakers: "+200M locuteurs",
-    level: "Débutant",
-    progress: 65,
-    emoji: "🏔️",
-    hue: "from-african-green/30 to-primary-700/10",
-  },
-  {
-    name: "Wolof",
-    region: "Sénégal · Gambie",
-    speakers: "+12M locuteurs",
-    level: "Débutant",
-    progress: 40,
-    emoji: "⛵",
-    hue: "from-gold-500/30 to-african-orange/10",
-  },
-  {
-    name: "Yoruba",
-    region: "Nigeria · Bénin",
-    speakers: "+45M locuteurs",
-    level: "Débutant",
-    progress: 30,
-    emoji: "👑",
-    hue: "from-african-orange/30 to-african-red/10",
-  },
-  {
-    name: "Lingala",
-    region: "RDC · Congo",
-    speakers: "+40M locuteurs",
-    level: "Débutant",
-    progress: 50,
-    emoji: "🌆",
-    hue: "from-primary-500/30 to-african-green/10",
-  },
-  {
-    name: "Ewondo",
-    region: "Cameroun",
-    speakers: "+2M locuteurs",
-    level: "Débutant",
-    progress: 20,
-    emoji: "🏡",
-    hue: "from-african-red/30 to-gold-500/10",
-  },
-  {
-    name: "Bambara",
-    region: "Mali",
-    speakers: "+15M locuteurs",
-    level: "Débutant",
-    progress: 25,
-    emoji: "🥁",
-    hue: "from-primary-700/30 to-african-orange/10",
-  },
-  {
-    name: "Hausa",
-    region: "Nigeria · Niger",
-    speakers: "+80M locuteurs",
-    level: "Débutant",
-    progress: 35,
-    emoji: "🌾",
-    hue: "from-gold-500/30 to-primary-500/10",
-  },
-  {
-    name: "Akan",
-    region: "Ghana",
-    speakers: "+11M locuteurs",
-    level: "Débutant",
-    progress: 18,
-    emoji: "✨",
-    hue: "from-african-green/30 to-gold-500/10",
-  },
-];
-
 export function Languages() {
   return (
-    <section id="langues" className="py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-6">
+    <section id="lore" className="relative overflow-hidden py-24 sm:py-32">
+      <div className="absolute inset-0 -z-10 bg-cosmic" />
+      <div className="absolute inset-0 -z-10 pattern-hieroglyph opacity-50" />
+
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 px-3 py-1 text-xs font-medium tracking-[0.22em] uppercase text-gold-300">
+            Le Lore
+          </span>
+          <h2 className="mt-6 font-display text-4xl font-bold leading-tight sm:text-5xl">
+            Le mot <span className="text-gradient-gold">Sankofa</span>
+          </h2>
+        </div>
+
+        <div className="mt-12 grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center">
+          <div className="relative aspect-square">
+            <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-gold-500/30 via-primary-500/20 to-transparent blur-3xl" />
+            <svg
+              viewBox="0 0 200 200"
+              className="h-full w-full"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="lore-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#fde68a" />
+                  <stop offset="100%" stopColor="#e0a022" />
+                </linearGradient>
+              </defs>
+              {/* Adinkra Sankofa — bird turning backwards */}
+              <path
+                d="M100 30 C70 30 50 55 50 90 C50 130 80 150 110 150 C140 150 165 130 165 100 C165 75 145 60 125 60 C110 60 100 70 100 85 C100 95 108 105 120 105"
+                stroke="url(#lore-grad)"
+                strokeWidth="4"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <circle cx="125" cy="100" r="4" fill="#fde68a" />
+              <path
+                d="M75 165 L100 180 L125 165"
+                stroke="url(#lore-grad)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                fill="none"
+              />
+              {[...Array(60)].map((_, i) => {
+                const a = (i / 60) * Math.PI * 2;
+                return (
+                  <circle
+                    key={i}
+                    cx={100 + Math.cos(a) * 92}
+                    cy={100 + Math.sin(a) * 92}
+                    r="0.8"
+                    fill="#f5b942"
+                    opacity={i % 3 === 0 ? 0.6 : 0.2}
+                  />
+                );
+              })}
+            </svg>
+          </div>
+
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
-              Nos langues
-            </span>
-            <h2 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-              Explorez nos{" "}
-              <span className="text-gradient-gold">langues vivantes</span>
-            </h2>
-            <p className="mt-3 max-w-2xl text-foreground/75">
-              Plus de 21 langues africaines disponibles dès aujourd&apos;hui,
-              avec audio natif, transcription phonétique et contextes culturels.
+            <p className="font-display text-2xl text-gold-300">
+              « Se wo were fi na wosankofa a yenkyi »
+            </p>
+            <p className="mt-2 text-sm uppercase tracking-[0.18em] text-muted">
+              Proverbe Akan — Ghana
+            </p>
+            <p className="mt-6 text-lg leading-relaxed text-foreground/85">
+              <em>« Il n&apos;est pas tabou de retourner chercher ce que tu as
+              oublié. »</em>
+            </p>
+            <p className="mt-6 leading-relaxed text-foreground/75">
+              Sankofa, c&apos;est l&apos;oiseau qui regarde en arrière pour saisir
+              l&apos;œuf de la connaissance — sans cesser d&apos;avancer. Cette collection
+              est une bibliothèque vivante : chaque masque est un fragment de
+              mémoire que la blockchain rend incorruptible.
+            </p>
+            <p className="mt-4 leading-relaxed text-foreground/75">
+              Posséder un Gardien Sankofa, ce n&apos;est pas acheter une image.
+              C&apos;est devenir <strong className="text-gold-300">dépositaire</strong>{" "}
+              d&apos;une mémoire. Chaque détenteur reçoit hors-chaîne le rituel
+              d&apos;activation, signé manuellement par l&apos;artiste, sur papier
+              véritable.
             </p>
           </div>
-          <a
-            href="#toutes-les-langues"
-            className="hidden shrink-0 items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-2 text-sm font-medium text-foreground/85 transition hover:border-primary-400 hover:text-gold-400 md:inline-flex"
-          >
-            Voir toutes les langues
-            <ArrowRight size={16} />
-          </a>
         </div>
-
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {LANGUAGES.map((lang) => (
-            <li key={lang.name}>
-              <LanguageCard {...lang} />
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
-  );
-}
-
-function LanguageCard({
-  name,
-  region,
-  speakers,
-  level,
-  progress,
-  emoji,
-  hue,
-}: Language) {
-  return (
-    <article
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated p-5 transition hover:-translate-y-1 hover:border-gold-500/60 hover:shadow-2xl hover:shadow-primary-900/30`}
-    >
-      <div
-        className={`absolute inset-0 -z-0 bg-gradient-to-br ${hue} opacity-60 transition group-hover:opacity-90`}
-      />
-      <div className="relative z-10 flex h-full flex-col">
-        <div className="flex items-center justify-between">
-          <span className="grid h-12 w-12 place-items-center rounded-xl bg-background/40 text-2xl ring-1 ring-border backdrop-blur">
-            {emoji}
-          </span>
-          <ProgressRing value={progress} />
-        </div>
-
-        <div className="mt-5">
-          <h3 className="text-xl font-bold text-foreground">{name}</h3>
-          <p className="mt-1 text-xs text-muted">{region}</p>
-          <p className="mt-1 text-xs text-foreground/60">{speakers}</p>
-        </div>
-
-        <div className="mt-5 flex items-center justify-between text-xs">
-          <span className="rounded-full bg-background/60 px-2.5 py-1 font-medium text-foreground/75 ring-1 ring-border">
-            Niveau {level.toLowerCase()}
-          </span>
-          <span className="font-semibold text-gold-400">{progress}%</span>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function ProgressRing({ value }: { value: number }) {
-  const radius = 18;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
-  return (
-    <div className="relative h-12 w-12">
-      <svg viewBox="0 0 48 48" className="h-12 w-12 -rotate-90">
-        <circle
-          cx="24"
-          cy="24"
-          r={radius}
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth="4"
-          fill="none"
-        />
-        <circle
-          cx="24"
-          cy="24"
-          r={radius}
-          stroke="#f5b942"
-          strokeWidth="4"
-          fill="none"
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-        />
-      </svg>
-      <span className="absolute inset-0 grid place-items-center text-[10px] font-bold text-gold-400">
-        {value}%
-      </span>
-    </div>
   );
 }

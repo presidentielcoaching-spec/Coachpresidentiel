@@ -1,0 +1,11 @@
+{
+  "name": "Sankofa Legacy — The Ether Guardians",
+  "description": "Cinq Gardiens. Cinq civilisations africaines. Une mémoire restaurée on-chain. Édition Genesis ultra-rare de 5 NFT 1-of-1, frappés sur Base. Chaque pièce est accompagnée hors-chaîne d'une carte d'activation papier signée par l'artiste.",
+  "image": "https://sankofa-legacy.xyz/collection-cover.jpg",
+  "banner_image_url": "https://sankofa-legacy.xyz/collection-banner.jpg",
+  "featured_image_url": "https://sankofa-legacy.xyz/collection-featured.jpg",
+  "external_link": "https://sankofa-legacy.xyz",
+  "seller_fee_basis_points": 750,
+  "fee_recipient": "0x0000000000000000000000000000000000000000",
+  "collaborators": []
+}

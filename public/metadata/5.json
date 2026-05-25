@@ -1,0 +1,21 @@
+{
+  "name": "Sankofa Legacy #005 — ASHANTI",
+  "description": "L'Impératrice de Lumière. Dernière des cinq, gardienne du Trône d'Or. Ses fibres optiques tressées portent la mémoire des reines-mères Ashanti. Son détenteur hérite d'une couronne invisible — l'autorité douce. Origine : Akan, Ghana. Pièce 1-of-1 de la collection Genesis Sankofa Legacy.",
+  "image": "ipfs://REMPLACER_PAR_CID_IMAGE_5",
+  "image_url": "https://sankofa-legacy.xyz/guardians/5.jpg",
+  "external_url": "https://sankofa-legacy.xyz/gardien/ashanti-lumiere",
+  "background_color": "3B0F7A",
+  "attributes": [
+    { "trait_type": "Gardien", "value": "ASHANTI" },
+    { "trait_type": "Titre", "value": "L'Impératrice de Lumière" },
+    { "trait_type": "Tribu", "value": "Ashanti / Akan" },
+    { "trait_type": "Origine", "value": "Ghana" },
+    { "trait_type": "Élément", "value": "Lumière" },
+    { "trait_type": "Domaine", "value": "Lignée royale & Sagesse" },
+    { "trait_type": "Aura", "value": "Or massif / Fibre optique" },
+    { "trait_type": "Énergie", "value": "Impératrice" },
+    { "trait_type": "Édition", "value": "Genesis" },
+    { "trait_type": "Rareté", "value": "1-of-1" },
+    { "display_type": "number", "trait_type": "Numéro de série", "value": 5, "max_value": 5 }
+  ]
+}

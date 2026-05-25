@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Cinzel", "Times New Roman", serif;
 
-  /* Base surfaces */
-  --color-background: #0b0614;
-  --color-surface: #14092a;
-  --color-surface-elevated: #1c0f3a;
+  /* Base surfaces — deep cosmic */
+  --color-background: #07050d;
+  --color-surface: #110a22;
+  --color-surface-elevated: #1a0f3a;
   --color-border: #2a1a4f;
 
-  /* Primary (deep purple) */
+  /* Royal purple */
   --color-primary-50: #f4eefe;
   --color-primary-100: #e6d8fb;
   --color-primary-200: #cdb1f7;
@@ -22,16 +23,18 @@
   --color-primary-800: #4c1d95;
   --color-primary-900: #3b0f7a;
 
-  /* Gold (CTA / accent) */
+  /* Sankofa gold */
   --color-gold-300: #fde68a;
   --color-gold-400: #fcd34d;
   --color-gold-500: #f5b942;
   --color-gold-600: #e0a022;
+  --color-gold-700: #b07a12;
 
-  /* African flag-inspired accents */
-  --color-african-green: #3fa34d;
+  /* Ancestral accents */
+  --color-cobalt: #1d6dd6;
   --color-african-orange: #e3672e;
   --color-african-red: #c5352b;
+  --color-emerald: #047857;
 
   /* Text */
   --color-foreground: #f5f0fa;
@@ -50,44 +53,57 @@
   * {
     border-color: var(--color-border);
   }
+
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
 }
 
 @layer utilities {
   .text-gradient-gold {
-    background: linear-gradient(135deg, #fde68a 0%, #f5b942 45%, #e3672e 100%);
+    background: linear-gradient(135deg, #fde68a 0%, #f5b942 45%, #e0a022 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .bg-radial-purple {
-    background: radial-gradient(
-        ellipse at top left,
-        rgba(124, 58, 237, 0.35) 0%,
-        transparent 55%
-      ),
-      radial-gradient(
-        ellipse at bottom right,
-        rgba(227, 103, 46, 0.18) 0%,
-        transparent 60%
-      ),
+  .text-gradient-cosmic {
+    background: linear-gradient(135deg, #fde68a 0%, #f5b942 30%, #7c3aed 75%, #1d6dd6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-cosmic {
+    background:
+      radial-gradient(ellipse at top, rgba(124, 58, 237, 0.28) 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(29, 109, 214, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(224, 160, 34, 0.12) 0%, transparent 55%),
       var(--color-background);
   }
 
-  .pattern-kente {
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba(245, 185, 66, 0.08) 0px,
-        rgba(245, 185, 66, 0.08) 2px,
-        transparent 2px,
-        transparent 12px
+  .pattern-hieroglyph {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(245, 185, 66, 0.04) 0px,
+        rgba(245, 185, 66, 0.04) 1px,
+        transparent 1px,
+        transparent 22px
       ),
       repeating-linear-gradient(
-        -45deg,
-        rgba(63, 163, 77, 0.06) 0px,
-        rgba(63, 163, 77, 0.06) 2px,
-        transparent 2px,
-        transparent 12px
+        0deg,
+        rgba(124, 58, 237, 0.04) 0px,
+        rgba(124, 58, 237, 0.04) 1px,
+        transparent 1px,
+        transparent 22px
       );
+  }
+
+  .glow-gold {
+    box-shadow:
+      0 0 40px rgba(245, 185, 66, 0.25),
+      0 0 80px rgba(245, 185, 66, 0.1);
   }
 }

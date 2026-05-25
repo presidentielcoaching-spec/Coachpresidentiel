@@ -1,72 +1,66 @@
-import { Mic, Compass, BookOpenText, Users } from "lucide-react";
-
-const FEATURES = [
-  {
-    icon: Mic,
-    title: "IA Conversationnelle",
-    description:
-      "Parle avec ton coach IA et améliore ta prononciation en temps réel, comme avec un locuteur natif.",
-    accent: "from-primary-500/30 to-primary-700/10",
-  },
-  {
-    icon: Compass,
-    title: "Parcours personnalisé",
-    description:
-      "Un apprentissage adapté à ton niveau, tes objectifs et ton rythme — généré et corrigé par l'IA.",
-    accent: "from-african-orange/30 to-gold-500/10",
-  },
-  {
-    icon: BookOpenText,
-    title: "Culture & traditions",
-    description:
-      "Découvre proverbes, contes, chansons et histoires ancestrales transmis par nos aînés.",
-    accent: "from-african-green/30 to-primary-500/10",
-  },
-  {
-    icon: Users,
-    title: "Communauté vivante",
-    description:
-      "Échange avec des apprenants du continent et de la diaspora, rejoins des groupes par langue.",
-    accent: "from-primary-700/30 to-african-red/10",
-  },
-];
+import { GUARDIANS } from "@/lib/collection";
+import { GuardianImage } from "./GuardianImage";
 
 export function Features() {
   return (
-    <section id="fonctionnalites" className="border-y border-border/60 bg-surface/30 py-20 lg:py-28">
+    <section id="gardiens" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
-            Fonctionnalités
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 px-3 py-1 text-xs font-medium tracking-[0.22em] uppercase text-gold-300">
+            Les Gardiens
           </span>
-          <h2 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            Une expérience{" "}
-            <span className="text-gradient-gold">immersive et humaine</span>
+          <h2 className="mt-6 font-display text-4xl font-bold leading-tight sm:text-5xl">
+            Cinq présences,{" "}
+            <span className="text-gradient-gold">une seule lignée</span>
           </h2>
-          <p className="mt-4 text-foreground/75">
-            On combine l&apos;IA la plus avancée avec la richesse de nos cultures.
-            Apprendre une langue africaine n&apos;a jamais été aussi vivant.
+          <p className="mt-5 text-lg text-foreground/75">
+            Chaque Gardien est frappé en exemplaire unique. Possesseur unique.
+            Histoire unique. Charge spirituelle unique.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map(({ icon: Icon, title, description, accent }) => (
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {GUARDIANS.map((g) => (
             <article
-              key={title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated p-6 transition hover:border-primary-400/60 hover:bg-surface-elevated/80"
+              key={g.id}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-surface/60 transition hover:border-gold-500/60"
             >
-              <div
-                className={`absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br ${accent} blur-2xl transition group-hover:scale-110`}
-              />
-              <div className="relative">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-500/15 text-primary-200 ring-1 ring-primary-500/30">
-                  <Icon size={22} strokeWidth={1.75} />
+              <div className="relative aspect-square overflow-hidden">
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${g.accent} opacity-50`}
+                />
+                <div className="absolute inset-0 pattern-hieroglyph opacity-30" />
+                <GuardianImage
+                  src={g.image}
+                  alt={`${g.name} — ${g.title}`}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  fallbackClassName="absolute inset-0 h-full w-full opacity-0"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/80 to-transparent" />
+                <div className="absolute left-4 top-4 rounded-full bg-background/70 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-gold-300 backdrop-blur">
+                  #{String(g.id).padStart(3, "0")} · 1/1
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-foreground">
-                  {title}
+              </div>
+
+              <div className="relative -mt-16 px-6 pb-8">
+                <h3 className="font-display text-2xl font-bold tracking-wide text-foreground">
+                  {g.name}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {description}
+                <p className="mt-1 text-sm font-medium uppercase tracking-[0.18em] text-gold-400">
+                  {g.title}
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-muted">
+                  <span className="rounded-full border border-border bg-background/40 px-2.5 py-1">
+                    {g.origin}
+                  </span>
+                  <span className="rounded-full border border-border bg-background/40 px-2.5 py-1">
+                    {g.element}
+                  </span>
+                </div>
+
+                <p className="mt-5 text-sm leading-relaxed text-foreground/75">
+                  {g.story}
                 </p>
               </div>
             </article>

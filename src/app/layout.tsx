@@ -2,23 +2,24 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Afrilingua AI — Nos langues, notre héritage",
+  title: "Sankofa Legacy — Les Gardiens Africains de l'Ether",
   description:
-    "Apprenez, parlez et vivez les langues africaines avec l'IA. Wolof, Yoruba, Swahili, Lingala, Ewondo et bien plus — pour le continent et la diaspora.",
+    "Édition Genesis ultra-rare de 5 NFT 1-of-1. Cinq Gardiens, cinq civilisations africaines ancrées dans la blockchain. Frappés sur Base. Whitelist ouverte.",
   keywords: [
-    "langues africaines",
-    "apprendre wolof",
-    "apprendre yoruba",
-    "apprendre swahili",
-    "Duolingo africain",
-    "EdTech Afrique",
-    "Afrilingua",
+    "NFT afrofuturiste",
+    "Sankofa",
+    "NFT Afrique",
+    "art digital africain",
+    "OpenSea collection",
+    "NFT 1-of-1",
+    "blockchain Base",
+    "héritage africain",
   ],
-  authors: [{ name: "Afrilingua AI" }],
+  authors: [{ name: "Sankofa Studio" }],
   openGraph: {
-    title: "Afrilingua AI — Nos langues, notre héritage",
+    title: "Sankofa Legacy — Les Gardiens Africains de l'Ether",
     description:
-      "La première plateforme IA pour apprendre les langues africaines. Reconnecte-toi à tes racines.",
+      "Cinq Gardiens. Cinq civilisations. Une mémoire restaurée on-chain.",
     type: "website",
     locale: "fr_FR",
   },
@@ -46,7 +47,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
