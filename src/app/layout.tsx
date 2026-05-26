@@ -2,23 +2,26 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Afrilingua AI — Nos langues, notre héritage",
+  title: "Racines & Mémoire — Arbre généalogique et archives historiques",
   description:
-    "Apprenez, parlez et vivez les langues africaines avec l'IA. Wolof, Yoruba, Swahili, Lingala, Ewondo et bien plus — pour le continent et la diaspora.",
+    "Construisez votre arbre généalogique et explorez les archives historiques : registres de fugitifs, actes d'affranchissement, recensements d'esclaves, cartes de migration.",
   keywords: [
-    "langues africaines",
-    "apprendre wolof",
-    "apprendre yoruba",
-    "apprendre swahili",
-    "Duolingo africain",
-    "EdTech Afrique",
-    "Afrilingua",
+    "généalogie",
+    "arbre généalogique",
+    "descendance",
+    "registre fugitifs",
+    "affranchissement",
+    "registre des esclaves",
+    "cartes de migration",
+    "archives coloniales",
+    "ANOM",
+    "BUMIDOM",
   ],
-  authors: [{ name: "Afrilingua AI" }],
+  authors: [{ name: "Racines & Mémoire" }],
   openGraph: {
-    title: "Afrilingua AI — Nos langues, notre héritage",
+    title: "Racines & Mémoire — Arbre généalogique et archives historiques",
     description:
-      "La première plateforme IA pour apprendre les langues africaines. Reconnecte-toi à tes racines.",
+      "Retrouver les noms, reconstituer les trajectoires. Arbre généalogique et archives historiques.",
     type: "website",
     locale: "fr_FR",
   },
@@ -36,10 +39,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"

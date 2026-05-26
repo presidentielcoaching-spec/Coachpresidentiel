@@ -1,12 +1,8 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { Features } from "@/components/Features";
-import { Languages } from "@/components/Languages";
-import { HowItWorks } from "@/components/HowItWorks";
-import { Pricing } from "@/components/Pricing";
-import { Testimonials } from "@/components/Testimonials";
-import { CTA } from "@/components/CTA";
-import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/genealogy/Navbar";
+import { Footer } from "@/components/genealogy/Footer";
+import { Hero } from "@/components/genealogy/Hero";
+import { Features } from "@/components/genealogy/Features";
+import { CTA } from "@/components/genealogy/CTA";
 
 export default function HomePage() {
   return (
@@ -15,10 +11,6 @@ export default function HomePage() {
       <main>
         <Hero />
         <Features />
-        <Languages />
-        <HowItWorks />
-        <Pricing />
-        <Testimonials />
         <CTA />
       </main>
       <Footer />
