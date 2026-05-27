@@ -1,28 +1,28 @@
 import Link from "next/link";
-import { TreePine, Archive, Users, ScrollText } from "lucide-react";
+import { Sun, Archive, Users, Map, Mic, Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="bg-radial-purple">
-      <div className="pattern-kente">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <section className="bg-radial-earth">
+      <div className="pattern-adinkra">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/60 px-3 py-1 text-xs uppercase tracking-widest text-[var(--color-gold-400)]">
-              <TreePine size={14} /> Racines &amp; Mémoire
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-bronze-500)]/60 bg-[var(--color-surface)]/60 px-3 py-1 text-xs uppercase tracking-widest text-[var(--color-gold-400)]">
+              <Sun size={14} /> Sanctuaire numérique
             </span>
-            <h1 className="mt-6 text-4xl font-bold leading-tight md:text-6xl">
-              Retrouvez votre <span className="text-gradient-gold">arbre</span>
+            <h1 className="mt-6 font-serif text-5xl font-bold leading-[1.05] md:text-7xl">
+              Les noms <span className="text-gradient-gold">retrouvent</span>
               <br />
-              et toute votre descendance.
+              leurs vies.
             </h1>
-            <p className="mt-6 text-lg text-[var(--color-muted)] md:text-xl">
-              Un outil de mémoire familiale combiné à des archives historiques :
-              registres de fugitifs, actes d&apos;affranchissement, recensements
-              d&apos;esclaves et cartes de migration. Pour relier les noms aux
-              vies.
+            <p className="mt-6 max-w-2xl text-lg text-[var(--color-muted)] md:text-xl">
+              Reconstruisez votre arbre africain et diasporique. Croisez avec
+              les registres d&apos;esclavage, les manifestes négriers, les
+              archives coloniales. Préservez les mémoires orales, cartographiez
+              les migrations forcées et volontaires.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href="/arbre"
                 className="rounded-full bg-[var(--color-gold-500)] px-6 py-3 text-sm font-semibold text-[var(--color-background)] transition hover:bg-[var(--color-gold-400)]"
@@ -31,26 +31,42 @@ export function Hero() {
               </Link>
               <Link
                 href="/archives"
-                className="rounded-full border border-[var(--color-border)] px-6 py-3 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-primary-400)]"
+                className="rounded-full border border-[var(--color-bronze-500)] px-6 py-3 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-gold-400)]"
               >
                 Explorer les archives
+              </Link>
+              <Link
+                href="/cartographie"
+                className="rounded-full border border-[var(--color-bronze-500)] px-6 py-3 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-gold-400)]"
+              >
+                Cartographie historique
               </Link>
             </div>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-4">
+          <div className="mt-20 grid gap-4 md:grid-cols-3 lg:grid-cols-6">
             {[
-              { icon: TreePine, label: "Arbre", value: "Sur 7 générations" },
-              { icon: Users, label: "Descendance", value: "Branches infinies" },
-              { icon: ScrollText, label: "Registres", value: "4 fonds couverts" },
-              { icon: Archive, label: "Archives", value: "ANOM · BUMIDOM" },
+              { icon: Users, label: "Arbre", value: "Multi-générations" },
+              {
+                icon: Archive,
+                label: "Registres",
+                value: "10 fonds couverts",
+              },
+              { icon: Map, label: "Cartographie", value: "Atlantique noir" },
+              {
+                icon: Sparkles,
+                label: "Chronologie",
+                value: "1444 → aujourd'hui",
+              },
+              { icon: Mic, label: "Mémoire orale", value: "Audio + récits" },
+              { icon: Sun, label: "Sources", value: "ANOM · UNESCO · SV" },
             ].map(({ icon: Icon, label, value }) => (
               <div
                 key={label}
                 className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/50 p-4"
               >
                 <Icon size={18} className="text-[var(--color-gold-400)]" />
-                <p className="mt-2 text-xs uppercase tracking-widest text-[var(--color-muted)]">
+                <p className="mt-2 text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
                   {label}
                 </p>
                 <p className="text-sm font-semibold">{value}</p>

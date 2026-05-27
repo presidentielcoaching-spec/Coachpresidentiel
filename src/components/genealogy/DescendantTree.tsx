@@ -113,11 +113,11 @@ function PersonCard({ person, level }: { person: Person; level: number }) {
     <div
       className={`inline-flex items-start gap-3 rounded-xl border border-[var(--color-border)] p-3 ${
         level === 0
-          ? "bg-[var(--color-primary-800)]/40"
+          ? "bg-[var(--color-earth-700)]/50"
           : "bg-[var(--color-surface-elevated)]/60"
       }`}
     >
-      <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary-700)] text-[var(--color-gold-400)]">
+      <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-earth-700)] text-[var(--color-gold-400)]">
         <User size={14} />
       </span>
       <div>

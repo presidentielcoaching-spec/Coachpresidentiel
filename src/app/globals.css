@@ -3,39 +3,54 @@
 @theme {
   --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman",
+    serif;
 
-  /* Base surfaces */
-  --color-background: #0b0614;
-  --color-surface: #14092a;
-  --color-surface-elevated: #1c0f3a;
-  --color-border: #2a1a4f;
+  /* ── Base : noir et terre profonde ────────────────────────────── */
+  --color-background: #0a0604;
+  --color-surface: #1a0f08;
+  --color-surface-elevated: #2a1a10;
+  --color-border: #3d2818;
 
-  /* Primary (deep purple) */
-  --color-primary-50: #f4eefe;
-  --color-primary-100: #e6d8fb;
-  --color-primary-200: #cdb1f7;
-  --color-primary-300: #b48af3;
-  --color-primary-400: #9c63ee;
-  --color-primary-500: #7c3aed;
-  --color-primary-600: #6d28d9;
-  --color-primary-700: #5b21b6;
-  --color-primary-800: #4c1d95;
-  --color-primary-900: #3b0f7a;
+  /* ── Terre : brun chaud, ocre, terracotta ─────────────────────── */
+  --color-earth-50: #fbf3eb;
+  --color-earth-100: #f3dec3;
+  --color-earth-200: #e5b487;
+  --color-earth-300: #cf8a4b;
+  --color-earth-400: #b06a2a;
+  --color-earth-500: #8b4f1f;
+  --color-earth-600: #6a3a16;
+  --color-earth-700: #4d2a0f;
+  --color-earth-800: #321a08;
+  --color-earth-900: #1a0d04;
 
-  /* Gold (CTA / accent) */
-  --color-gold-300: #fde68a;
-  --color-gold-400: #fcd34d;
-  --color-gold-500: #f5b942;
-  --color-gold-600: #e0a022;
+  /* ── Or : doré et lumière ─────────────────────────────────────── */
+  --color-gold-300: #f7e3a3;
+  --color-gold-400: #f3cd5e;
+  --color-gold-500: #e8b333;
+  --color-gold-600: #c8941a;
+  --color-gold-700: #9a700f;
 
-  /* African flag-inspired accents */
-  --color-african-green: #3fa34d;
-  --color-african-orange: #e3672e;
-  --color-african-red: #c5352b;
+  /* ── Bronze : alliage chaud ───────────────────────────────────── */
+  --color-bronze-300: #d6b48b;
+  --color-bronze-400: #b88e58;
+  --color-bronze-500: #966c3a;
+  --color-bronze-600: #75522a;
 
-  /* Text */
-  --color-foreground: #f5f0fa;
-  --color-muted: #a394c0;
+  /* ── Terracotta / résistance ──────────────────────────────────── */
+  --color-terracotta-400: #d97050;
+  --color-terracotta-500: #c5523a;
+  --color-terracotta-600: #9a3c28;
+
+  /* ── Texte ────────────────────────────────────────────────────── */
+  --color-foreground: #f3e9d8;
+  --color-muted: #a89378;
+
+  /* Aliases pour compat avec composants existants */
+  --color-primary-400: #f3cd5e;
+  --color-primary-500: #e8b333;
+  --color-primary-700: #6a3a16;
+  --color-primary-800: #4d2a0f;
 }
 
 @layer base {
@@ -50,44 +65,71 @@
   * {
     border-color: var(--color-border);
   }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
 }
 
 @layer utilities {
   .text-gradient-gold {
-    background: linear-gradient(135deg, #fde68a 0%, #f5b942 45%, #e3672e 100%);
+    background: linear-gradient(
+      135deg,
+      #f7e3a3 0%,
+      #f3cd5e 40%,
+      #c5523a 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .bg-radial-purple {
-    background: radial-gradient(
+  .bg-radial-earth {
+    background:
+      radial-gradient(
         ellipse at top left,
-        rgba(124, 58, 237, 0.35) 0%,
+        rgba(232, 179, 51, 0.18) 0%,
         transparent 55%
       ),
       radial-gradient(
         ellipse at bottom right,
-        rgba(227, 103, 46, 0.18) 0%,
+        rgba(197, 82, 58, 0.16) 0%,
         transparent 60%
       ),
       var(--color-background);
   }
 
-  .pattern-kente {
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba(245, 185, 66, 0.08) 0px,
-        rgba(245, 185, 66, 0.08) 2px,
-        transparent 2px,
-        transparent 12px
+  .pattern-bogolan {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(232, 179, 51, 0.05) 0px,
+        rgba(232, 179, 51, 0.05) 1px,
+        transparent 1px,
+        transparent 14px
       ),
       repeating-linear-gradient(
-        -45deg,
-        rgba(63, 163, 77, 0.06) 0px,
-        rgba(63, 163, 77, 0.06) 2px,
-        transparent 2px,
-        transparent 12px
+        90deg,
+        rgba(197, 82, 58, 0.04) 0px,
+        rgba(197, 82, 58, 0.04) 1px,
+        transparent 1px,
+        transparent 14px
       );
+  }
+
+  .pattern-adinkra {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(243, 205, 94, 0.12) 1px,
+      transparent 0
+    );
+    background-size: 24px 24px;
+  }
+
+  .border-bronze {
+    border-color: var(--color-bronze-500);
   }
 }
