@@ -23,7 +23,7 @@ export default async function BoutiquePage() {
     <>
       <PageHeader
         title="Boutique"
-        subtitle="Débloque tout le potentiel d'Kemetlingua AI avec Premium."
+        subtitle="Débloque tout le potentiel de Kemetlingua AI avec Premium."
       />
 
       <div className="mx-auto max-w-2xl">
