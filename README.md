@@ -118,17 +118,32 @@ middleware.ts                 # Garde-fou sur /dashboard, /lecons, /ia…
 Le webhook met automatiquement à jour `User.isPremium`, `stripeSubscriptionId`,
 `premiumUntil`.
 
-### Orange Money / Wave (activation manuelle)
-Ces deux fournisseurs exigent des contrats marchands KYC qu'on ne peut pas
-intégrer en quelques minutes. Le flux actuel :
-- L'utilisateur saisit son numéro → on crée une `PendingPayment` en DB
-- On lui ouvre un lien WhatsApp pré-rempli vers ton numéro support
-  (configure `NEXT_PUBLIC_SUPPORT_WHATSAPP`)
-- Tu vérifies le paiement, puis flippes `isPremium=true` manuellement
-  (depuis Prisma Studio : `pnpm exec prisma studio`).
+### Wave (paiement direct par QR + lien marchand)
+Flux production-ready, **pas d'API marchand requise** :
+1. L'utilisateur clique « Payer avec Wave · 3 250 XOF » → une `PendingPayment`
+   est créée en DB avec `currency: "XOF"`.
+2. Un modal s'ouvre avec :
+   - le QR code généré dynamiquement à partir de `NEXT_PUBLIC_WAVE_PAYMENT_URL`
+   - un bouton « Ouvrir Wave et payer » qui pointe sur le même lien
+   - un bouton « Imprimer / partager le QR » (pour scan en magasin)
+3. Après paiement, l'utilisateur clique « J'ai payé » → la `PendingPayment`
+   passe en `claim_paid` et un lien WhatsApp pré-rempli s'ouvre pour
+   envoyer la capture.
+4. Tu rapproches manuellement la transaction Wave dans ton dashboard
+   marchand puis flippes `isPremium=true` dans Prisma Studio.
 
-Pour automatiser plus tard : intégrer l'API Intouch / CinetPay (gateway
-multi-providers incluant Orange Money et Wave).
+`NEXT_PUBLIC_WAVE_PAYMENT_URL` doit être le lien marchand statique
+fourni par ton compte Wave Business (ex : `https://pay.wave.com/m/M_ci_.../c/ci/?amount=3250`).
+Le montant 3 250 XOF est l'équivalent ~5€ utilisé partout dans l'UI.
+
+### Orange Money (activation manuelle)
+Pas d'URL de paiement statique disponible — flux conservé :
+- L'utilisateur saisit son numéro → `PendingPayment` créée
+- Lien WhatsApp pré-rempli vers ton numéro support
+- Tu valides le paiement puis flippes `isPremium=true`
+
+Pour automatiser Orange Money plus tard : intégrer Intouch / CinetPay
+(gateway multi-providers).
 
 ## IA Conversationnelle (Claude)
 
