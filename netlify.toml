@@ -1,0 +1,33 @@
+# Configuration Netlify pour Kemetlingua AI
+# Le plugin officiel Next.js est installé automatiquement par Netlify.
+
+[build]
+  command = "node scripts/prepare-db-schema.mjs && pnpm prisma generate && pnpm prisma db push --accept-data-loss && pnpm next build"
+  publish = ".next"
+
+[build.environment]
+  # Force npm/pnpm a utiliser Node 22 (cohérent avec Vercel)
+  NODE_VERSION = "22"
+  # Netlify utilise npm par défaut — on bascule sur pnpm
+  NPM_FLAGS = "--version"
+  # pnpm est installé via corepack dans l'image Netlify récente
+  PNPM_FLAGS = "--shamefully-hoist"
+
+# Plugin officiel Next.js : SSR, ISR, middleware, image optimization
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Service worker doit servir avec Service-Worker-Allowed pour le scope racine
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Webhook Stripe : Netlify Functions ont par défaut un body parser JSON
+# mais l'API route Next.js gère elle-même la signature raw. Pas de tweak nécessaire.

@@ -1,7 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "prisma generate && prisma db push --accept-data-loss && next build",
-  "installCommand": "pnpm install",
   "framework": "nextjs",
-  "regions": ["fra1", "cdg1"]
+  "buildCommand": "node scripts/prepare-db-schema.mjs && prisma generate && prisma db push --accept-data-loss && next build",
+  "installCommand": "pnpm install",
+  "regions": ["fra1", "cdg1"],
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
 }

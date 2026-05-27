@@ -61,20 +61,72 @@ prisma/
 middleware.ts                 # Garde-fou sur /dashboard, /lecons, /ia…
 ```
 
-## Déploiement Vercel
+## Déploiement
 
-1. **Pousse la branche** sur GitHub.
-2. **Importe le repo** dans [vercel.com/new](https://vercel.com/new).
-3. **Provisionne une base Postgres** (Vercel Postgres, Neon, ou Supabase).
-4. **Variables d'environnement** :
-   - `DATABASE_URL` → URL Postgres (`postgresql://…?sslmode=require`)
-   - `AUTH_SECRET` → 32+ caractères aléatoires (`openssl rand -base64 48`)
-5. **Bascule Prisma sur Postgres** : édite `prisma/schema.prisma` et change `provider = "sqlite"` → `provider = "postgresql"`.
-6. **Deploy**. Le `buildCommand` du `vercel.json` exécute `prisma db push` + `next build`.
-7. **Seed** (une fois) : `vercel env pull && pnpm db:seed`.
+### Préparation commune (5 min)
 
-> ⚠️ SQLite n'est pas persistant sur Vercel (système de fichiers éphémère).
-> Postgres hébergé est **obligatoire** en prod.
+1. **Crée une base Postgres** (gratuit) :
+   - Neon : [console.neon.tech](https://console.neon.tech) → Create project → copie le `DATABASE_URL`
+   - OU Supabase : Project → Settings → Database → URI
+   - OU Vercel Postgres : depuis le dashboard Vercel
+2. **Génère un `AUTH_SECRET`** :
+   ```bash
+   openssl rand -base64 48
+   ```
+3. **Récupère tes clés API** : Stripe (sk + price + whsec), Anthropic, et le numéro WhatsApp support.
+
+### Vercel
+
+1. Ouvre [vercel.com/new](https://vercel.com/new) → Import Git Repository → choisis `Coachpresidentiel`.
+2. **Important** : sélectionne la bonne branche (`main` après merge de la PR, ou `claude/african-language-platform-fcj6J` en attendant).
+3. Framework Preset = Next.js (auto-détecté).
+4. Ajoute les variables d'environnement (Settings → Environment Variables) :
+   ```
+   DATABASE_URL=postgresql://…?sslmode=require
+   AUTH_SECRET=…
+   NEXT_PUBLIC_SITE_URL=https://<ton-domaine>.vercel.app
+   STRIPE_SECRET_KEY=sk_…
+   STRIPE_WEBHOOK_SECRET=whsec_…   (à remplir après l'étape 6 ci-dessous)
+   STRIPE_PRICE_ID=price_…
+   ANTHROPIC_API_KEY=sk-ant-…
+   NEXT_PUBLIC_SUPPORT_WHATSAPP=221700000000
+   NEXT_PUBLIC_SUPPORT_EMAIL=premium@kemetlingua.com
+   NEXT_PUBLIC_WAVE_PAYMENT_URL=https://pay.wave.com/m/M_ci_…/c/ci/?amount=3250
+   ```
+5. Deploy. Le `buildCommand` de `vercel.json` :
+   - swap automatique du provider Prisma SQLite → Postgres (`scripts/prepare-db-schema.mjs`)
+   - `prisma generate` + `prisma db push --accept-data-loss` (crée les tables)
+   - `next build`
+6. **Webhook Stripe** :
+   - Dashboard Stripe → Developers → Webhooks → Add endpoint
+   - URL : `https://<ton-domaine>.vercel.app/api/webhooks/stripe`
+   - Events : `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`
+   - Copie le `whsec_…` dans `STRIPE_WEBHOOK_SECRET` côté Vercel → Redéploie
+7. **Seed des langues + utilisateurs démo** (une seule fois) :
+   ```bash
+   vercel env pull .env.production.local
+   DATABASE_URL=$(grep DATABASE_URL .env.production.local | cut -d= -f2-) pnpm db:seed
+   ```
+
+### Netlify
+
+1. Ouvre [app.netlify.com/start](https://app.netlify.com/start) → Import existing project → GitHub → `Coachpresidentiel`.
+2. Sélectionne la bonne branche (idem Vercel).
+3. Build settings : laisse Netlify détecter le `netlify.toml` (déjà commité). Sinon :
+   - Build command : `node scripts/prepare-db-schema.mjs && pnpm prisma generate && pnpm prisma db push --accept-data-loss && pnpm next build`
+   - Publish directory : `.next`
+4. Ajoute les mêmes variables d'environnement que pour Vercel (Site settings → Environment variables).
+5. Le plugin `@netlify/plugin-nextjs` (déclaré dans `netlify.toml`) est installé automatiquement.
+6. Deploy. Récupère le webhook Stripe (`https://<ton-domaine>.netlify.app/api/webhooks/stripe`) comme à l'étape Vercel 6.
+7. Seed via `netlify env:get` ou via Neon SQL Editor directement.
+
+### Local vs Prod : comment Prisma jongle entre SQLite et Postgres
+
+- **Local** : `DATABASE_URL="file:./prisma/dev.db"` → `scripts/prepare-db-schema.mjs` détecte SQLite et laisse le schéma intact.
+- **CI Vercel/Netlify** : `DATABASE_URL` commence par `postgres://` → le script bascule `provider = "sqlite"` vers `provider = "postgresql"` dans `prisma/schema.prisma` AVANT `prisma generate`. La modification est éphémère (faite dans le container CI, jamais commitée).
+
+> ⚠️ **SQLite n'est pas persistant sur Vercel ni Netlify** (filesystem éphémère).
+> Tu DOIS provisionner un Postgres hébergé.
 
 ## Pages publiques
 

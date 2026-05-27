@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "node scripts/prepare-db-schema.mjs && prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "db:prepare": "node scripts/prepare-db-schema.mjs",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:reset": "rm -f prisma/dev.db && pnpm db:push && pnpm db:seed",
+    "deploy:db": "node scripts/prepare-db-schema.mjs && prisma db push --accept-data-loss && tsx prisma/seed.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {
