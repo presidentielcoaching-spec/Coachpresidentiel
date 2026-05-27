@@ -145,6 +145,23 @@ Pas d'URL de paiement statique disponible — flux conservé :
 Pour automatiser Orange Money plus tard : intégrer Intouch / CinetPay
 (gateway multi-providers).
 
+## Agent d'accueil Koffi (concierge global)
+
+Un widget de chat flottant accessible **sur toutes les pages** (landing,
+auth, app — sauf `/ia` et `/lecons/[...]` pour éviter les chevauchements).
+
+- **Persona Koffi** — agent commercial / onboarding / support de niveau 1
+- Distinct de **Mbote** (qui enseigne les langues sur `/ia`)
+- Connaît toutes les fonctionnalités, les tarifs, les paiements, les langues
+- Personnalise quand l'utilisateur est connecté (prénom, statut Premium, langues)
+- Streaming Claude Sonnet 4.6 + prompt caching sur le system prompt
+- Conversation persistée en `localStorage` (dernières 20 messages)
+- Suggestions rapides : « Comment souscrire ? », « Quelles langues ? », etc.
+
+Endpoint : `POST /api/concierge` (accepte les visiteurs anonymes).
+Config UI : `src/components/ConciergeWidget.tsx`.
+Persona / brief produit : `src/lib/concierge.ts`.
+
 ## IA Conversationnelle (Claude)
 
 `/ia` utilise **Claude Sonnet 4.6** via le SDK officiel `@anthropic-ai/sdk`.

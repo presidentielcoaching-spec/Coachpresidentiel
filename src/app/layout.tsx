@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { PWARegister } from "@/components/PWARegister";
+import { ConciergeWidget } from "@/components/ConciergeWidget";
 
 export const metadata: Metadata = {
   title: "Kemetlingua AI — Nos langues, notre héritage",
@@ -63,6 +64,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen antialiased">
         {children}
+        <ConciergeWidget />
         <PWARegister />
       </body>
     </html>
