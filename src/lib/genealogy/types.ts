@@ -45,6 +45,16 @@ export type ArchiveRecord = {
   ethnie?: string;
   plantation?: string;
   ship?: string;
+  /** Juridiction (utile pour les fiches judiciaires) */
+  court?: string;
+  /** Décision rendue */
+  verdict?: string;
+  /** Figures associées : avocats, prévenus, juges, témoins */
+  figures?: string[];
+  /** Référence d'archive précise (cote) */
+  archiveRef?: string;
+  /** Sources externes (URL ou citation de base) */
+  externalLinks?: { label: string; url?: string }[];
   source: string;
   notes?: string;
 };

@@ -204,7 +204,7 @@ function FilterSelect({
 function RecordCard({ record }: { record: ArchiveRecord }) {
   return (
     <article className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/50 p-5">
-      <h3 className="text-base font-semibold">{record.name}</h3>
+      <h3 className="font-serif text-lg font-semibold">{record.name}</h3>
       <p className="mt-0.5 text-xs text-[var(--color-muted)]">
         {[record.date, record.age, record.location]
           .filter(Boolean)
@@ -212,6 +212,7 @@ function RecordCard({ record }: { record: ArchiveRecord }) {
       </p>
 
       <dl className="mt-4 space-y-2 text-sm">
+        {record.court && <Row label="Juridiction" value={record.court} />}
         {record.origin && <Row label="Origine" value={record.origin} />}
         {record.destination && (
           <Row label="Destination" value={record.destination} />
@@ -224,15 +225,69 @@ function RecordCard({ record }: { record: ArchiveRecord }) {
         {record.owner && <Row label="Propriétaire" value={record.owner} />}
       </dl>
 
+      {record.verdict && (
+        <div className="mt-4 rounded-lg border border-[var(--color-bronze-500)]/40 bg-[var(--color-earth-700)]/30 p-3">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-gold-400)]">
+            Verdict
+          </p>
+          <p className="mt-1 text-sm">{record.verdict}</p>
+        </div>
+      )}
+
+      {record.figures && record.figures.length > 0 && (
+        <div className="mt-3">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
+            Figures
+          </p>
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            {record.figures.map((f) => (
+              <span
+                key={f}
+                className="rounded-full border border-[var(--color-bronze-500)]/40 bg-[var(--color-surface-elevated)]/60 px-2 py-0.5 text-[11px]"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       {record.notes && (
         <p className="mt-3 border-l-2 border-[var(--color-gold-500)] pl-3 text-sm text-[var(--color-muted)]">
           {record.notes}
         </p>
       )}
 
-      <p className="mt-4 text-xs uppercase tracking-widest text-[var(--color-gold-400)]">
+      {record.archiveRef && (
+        <p className="mt-3 font-mono text-[11px] text-[var(--color-bronze-300)]">
+          Cote · {record.archiveRef}
+        </p>
+      )}
+
+      <p className="mt-3 text-xs uppercase tracking-widest text-[var(--color-gold-400)]">
         Source · {record.source}
       </p>
+
+      {record.externalLinks && record.externalLinks.length > 0 && (
+        <ul className="mt-3 space-y-1 text-xs">
+          {record.externalLinks.map((l) => (
+            <li key={l.label}>
+              {l.url ? (
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-gold-400)] underline-offset-2 hover:underline"
+                >
+                  ↗ {l.label}
+                </a>
+              ) : (
+                <span className="text-[var(--color-muted)]">↗ {l.label}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </article>
   );
 }
