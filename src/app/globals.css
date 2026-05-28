@@ -1,35 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* === KEMETLINGUA AI — Brand book v1 === */
+  /* Display font : Cinzel — monumental, inspiré des civilisations antiques (titres) */
+  /* UI font : Poppins — moderne, lisible, technologique (interface) */
+  --font-display: "Cinzel", "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Poppins", "Montserrat", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* Base surfaces */
-  --color-background: #0b0614;
-  --color-surface: #14092a;
-  --color-surface-elevated: #1c0f3a;
-  --color-border: #2a1a4f;
+  /* Base surfaces — Noir cosmique */
+  --color-background: #090b1a;
+  --color-surface: #11132b;
+  --color-surface-elevated: #181a3a;
+  --color-border: #2a2d55;
 
-  /* Primary (deep purple) */
-  --color-primary-50: #f4eefe;
-  --color-primary-100: #e6d8fb;
-  --color-primary-200: #cdb1f7;
-  --color-primary-300: #b48af3;
-  --color-primary-400: #9c63ee;
-  --color-primary-500: #7c3aed;
-  --color-primary-600: #6d28d9;
-  --color-primary-700: #5b21b6;
-  --color-primary-800: #4c1d95;
-  --color-primary-900: #3b0f7a;
+  /* Primary — Violet IA */
+  --color-primary-50: #efeaff;
+  --color-primary-100: #ddd3ff;
+  --color-primary-200: #b9a4ff;
+  --color-primary-300: #9879ff;
+  --color-primary-400: #7d54ff;
+  --color-primary-500: #6c3bff;
+  --color-primary-600: #5a26ec;
+  --color-primary-700: #4818cb;
+  --color-primary-800: #340faa;
+  --color-primary-900: #220785;
 
-  /* Gold (CTA / accent) */
+  /* Gold — Or royal africain (CTA / accent / luxe) */
   --color-gold-300: #fde68a;
-  --color-gold-400: #fcd34d;
-  --color-gold-500: #f5b942;
-  --color-gold-600: #e0a022;
+  --color-gold-400: #facf52;
+  --color-gold-500: #f5c542;
+  --color-gold-600: #d4a522;
 
-  /* African flag-inspired accents */
-  --color-african-green: #3fa34d;
+  /* Bronze ancestral — culture, patrimoine, textures */
+  --color-bronze-400: #b08148;
+  --color-bronze-500: #8c6239;
+  --color-bronze-600: #6b4928;
+
+  /* Vert panafricain — validation, progression, énergie */
+  --color-african-green: #00b26f;
+  /* Conservés pour drapeaux / accents culturels */
   --color-african-orange: #e3672e;
   --color-african-red: #c5352b;
 
@@ -47,47 +57,99 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Titres = police d'apparat */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
   * {
     border-color: var(--color-border);
   }
 }
 
 @layer utilities {
+  /* Or royal en dégradé pour les titres signature */
   .text-gradient-gold {
-    background: linear-gradient(135deg, #fde68a 0%, #f5b942 45%, #e3672e 100%);
+    background: linear-gradient(135deg, #fde68a 0%, #f5c542 45%, #b08148 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
+  /* Dégradé violet IA + or royal pour grands titres premium */
+  .text-gradient-royal {
+    background: linear-gradient(135deg, #f5c542 0%, #facf52 35%, #6c3bff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Halo cosmique : violet IA + or royal en radial */
   .bg-radial-purple {
-    background: radial-gradient(
+    background:
+      radial-gradient(
         ellipse at top left,
-        rgba(124, 58, 237, 0.35) 0%,
+        rgba(108, 59, 255, 0.35) 0%,
         transparent 55%
       ),
       radial-gradient(
         ellipse at bottom right,
-        rgba(227, 103, 46, 0.18) 0%,
+        rgba(245, 197, 66, 0.16) 0%,
         transparent 60%
       ),
       var(--color-background);
   }
 
+  /* Motif kente subtil (or royal + bronze) */
   .pattern-kente {
     background-image: repeating-linear-gradient(
         45deg,
-        rgba(245, 185, 66, 0.08) 0px,
-        rgba(245, 185, 66, 0.08) 2px,
+        rgba(245, 197, 66, 0.08) 0px,
+        rgba(245, 197, 66, 0.08) 2px,
         transparent 2px,
         transparent 12px
       ),
       repeating-linear-gradient(
         -45deg,
-        rgba(63, 163, 77, 0.06) 0px,
-        rgba(63, 163, 77, 0.06) 2px,
+        rgba(140, 98, 57, 0.07) 0px,
+        rgba(140, 98, 57, 0.07) 2px,
         transparent 2px,
         transparent 12px
       );
+  }
+
+  /* Glassmorphism premium pour cartes "Wakanda tech" */
+  .glass {
+    background: linear-gradient(
+      135deg,
+      rgba(24, 26, 58, 0.85) 0%,
+      rgba(17, 19, 43, 0.65) 100%
+    );
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(245, 197, 66, 0.12);
+  }
+
+  /* Glow doré sur hover (boutons CTA premium) */
+  .glow-gold-hover {
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  .glow-gold-hover:hover {
+    box-shadow:
+      0 0 24px rgba(245, 197, 66, 0.35),
+      0 0 48px rgba(245, 197, 66, 0.18);
+  }
+
+  /* Glow violet IA — hologramme */
+  .glow-violet {
+    box-shadow:
+      0 0 30px rgba(108, 59, 255, 0.25),
+      inset 0 0 20px rgba(108, 59, 255, 0.05);
   }
 }

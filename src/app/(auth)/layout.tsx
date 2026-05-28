@@ -29,7 +29,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             </ul>
           </div>
           <p className="text-xs text-muted">
-            © {new Date().getFullYear()} Kemetlingua AI · Nos langues, notre héritage.
+            © {new Date().getFullYear()} Kemetlingua AI · Nos langues. Notre
+            héritage. Notre futur.
           </p>
         </div>
       </div>

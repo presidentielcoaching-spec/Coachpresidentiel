@@ -4,9 +4,9 @@ import { PWARegister } from "@/components/PWARegister";
 import { ConciergeWidget } from "@/components/ConciergeWidget";
 
 export const metadata: Metadata = {
-  title: "Kemetlingua AI — Nos langues, notre héritage",
+  title: "Kemetlingua AI — Nos langues. Notre héritage. Notre futur.",
   description:
-    "Apprenez, parlez et vivez les langues africaines avec l'IA. Wolof, Yoruba, Swahili, Lingala, Ewondo et bien plus — pour le continent et la diaspora.",
+    "L'IA panafricaine premium dédiée aux langues africaines et à la transmission culturelle. Wolof, Yoruba, Swahili, Lingala, Ewondo et bien plus.",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.png",
@@ -19,25 +19,27 @@ export const metadata: Metadata = {
   },
   keywords: [
     "langues africaines",
+    "Kemet",
     "apprendre wolof",
     "apprendre yoruba",
     "apprendre swahili",
-    "Duolingo africain",
-    "EdTech Afrique",
+    "IA africaine",
+    "afro-futurisme",
+    "diaspora",
     "Kemetlingua",
   ],
   authors: [{ name: "Kemetlingua AI" }],
   openGraph: {
-    title: "Kemetlingua AI — Nos langues, notre héritage",
+    title: "Kemetlingua AI — Nos langues. Notre héritage. Notre futur.",
     description:
-      "La première plateforme IA pour apprendre les langues africaines. Reconnecte-toi à tes racines.",
+      "Reconnecte-toi à la langue de tes ancêtres grâce à l'IA panafricaine.",
     type: "website",
     locale: "fr_FR",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0614",
+  themeColor: "#090b1a",
   width: "device-width",
   initialScale: 1,
 };
@@ -48,17 +50,14 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>

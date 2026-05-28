@@ -13,17 +13,19 @@ export function Hero() {
             La première plateforme IA pour les langues africaines
           </span>
 
-          <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-            Nos langues,
+          <h1 className="font-display mt-6 text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            Nos langues.
             <br />
-            <span className="text-gradient-gold">notre héritage</span>
+            <span className="text-gradient-gold">Notre héritage.</span>
+            <br />
+            <span className="text-primary-300">Notre futur.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-foreground/80 sm:text-xl">
-            Apprenez, parlez et vivez les langues africaines grâce à
-            l&apos;intelligence artificielle. Du <strong>Wolof</strong> au{" "}
-            <strong>Yoruba</strong>, du <strong>Swahili</strong> à
-            l&apos;<strong>Ewondo</strong> — reconnecte-toi à tes racines.
+            Reconnecte-toi à la langue de tes ancêtres grâce à l&apos;IA
+            panafricaine. Du <strong>Wolof</strong> au <strong>Yoruba</strong>,
+            du <strong>Swahili</strong> à l&apos;<strong>Ewondo</strong> — la
+            technologie au service de nos racines.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
