@@ -36,6 +36,27 @@
   /* Text */
   --color-foreground: #f5f0fa;
   --color-muted: #a394c0;
+
+  /* === LEGACY SANKOFA NFT — Afro-futuristic palette === */
+  --color-sankofa-bg: #050309;
+  --color-sankofa-surface: #0c0814;
+  --color-sankofa-elevated: #14101f;
+  --color-sankofa-border: #1f1830;
+  --color-sankofa-ivory: #f5ecd9;
+  --color-sankofa-ivory-soft: #e9dec5;
+  --color-sankofa-gold-200: #f7e7a4;
+  --color-sankofa-gold-400: #f1c34a;
+  --color-sankofa-gold-500: #d4af37;
+  --color-sankofa-gold-600: #b08a1f;
+  --color-sankofa-bronze: #cd7f32;
+  --color-sankofa-bronze-deep: #8a4f1d;
+  --color-sankofa-cosmos: #1e3a8a;
+  --color-sankofa-cosmos-deep: #0a1a3f;
+  --color-sankofa-cosmos-bright: #4f6dff;
+  --color-sankofa-violet: #6d28d9;
+  --color-sankofa-magenta: #d946ef;
+  --color-sankofa-mint: #2dd4bf;
+  --color-sankofa-muted: #8b8298;
 }
 
 @layer base {
@@ -89,5 +110,269 @@
         transparent 2px,
         transparent 12px
       );
+  }
+
+  /* === LEGACY SANKOFA NFT utilities === */
+  .sankofa-root {
+    background: var(--color-sankofa-bg);
+    color: var(--color-sankofa-ivory);
+    font-family:
+      "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  .sankofa-cosmos-bg {
+    background:
+      radial-gradient(
+        ellipse at 12% 8%,
+        rgba(79, 109, 255, 0.22) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 88% 12%,
+        rgba(212, 175, 55, 0.18) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at 50% 100%,
+        rgba(217, 70, 239, 0.15) 0%,
+        transparent 65%
+      ),
+      linear-gradient(180deg, #050309 0%, #0a0716 50%, #050309 100%);
+  }
+
+  .sankofa-grid-bg {
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .sankofa-noise {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+    background-size: 3px 3px;
+  }
+
+  .text-sankofa-gold {
+    background: linear-gradient(
+      135deg,
+      #f7e7a4 0%,
+      #f1c34a 35%,
+      #d4af37 65%,
+      #cd7f32 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-sankofa-cosmos {
+    background: linear-gradient(
+      135deg,
+      #f5ecd9 0%,
+      #4f6dff 50%,
+      #d946ef 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .border-sankofa-gold {
+    border-color: rgba(212, 175, 55, 0.35);
+  }
+
+  .sankofa-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(20, 16, 31, 0.85) 0%,
+      rgba(12, 8, 20, 0.75) 100%
+    );
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    backdrop-filter: blur(14px);
+  }
+
+  .sankofa-glass-hover {
+    transition:
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      transform 0.4s ease;
+  }
+  .sankofa-glass-hover:hover {
+    border-color: rgba(241, 195, 74, 0.55);
+    box-shadow:
+      0 0 0 1px rgba(241, 195, 74, 0.2),
+      0 24px 60px -20px rgba(241, 195, 74, 0.25),
+      0 0 80px -20px rgba(79, 109, 255, 0.35);
+    transform: translateY(-4px);
+  }
+
+  .sankofa-btn-gold {
+    background: linear-gradient(135deg, #f7e7a4 0%, #f1c34a 45%, #cd7f32 100%);
+    color: #050309;
+    border-radius: 9999px;
+    font-weight: 600;
+    box-shadow:
+      0 0 0 1px rgba(212, 175, 55, 0.6),
+      0 10px 30px -10px rgba(241, 195, 74, 0.55);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+  }
+  .sankofa-btn-gold:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow:
+      0 0 0 1px rgba(247, 231, 164, 0.8),
+      0 18px 40px -10px rgba(247, 231, 164, 0.55);
+  }
+
+  .sankofa-btn-ghost {
+    border-radius: 9999px;
+    border: 1px solid rgba(245, 236, 217, 0.25);
+    color: var(--color-sankofa-ivory);
+    background: rgba(245, 236, 217, 0.03);
+    transition:
+      border-color 0.25s ease,
+      background 0.25s ease;
+  }
+  .sankofa-btn-ghost:hover {
+    border-color: rgba(245, 236, 217, 0.6);
+    background: rgba(245, 236, 217, 0.07);
+  }
+
+  .sankofa-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: var(--color-sankofa-gold-200);
+    background: rgba(212, 175, 55, 0.05);
+  }
+
+  .sankofa-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(212, 175, 55, 0.5),
+      transparent
+    );
+  }
+
+  .sankofa-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .sankofa-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(247, 231, 164, 0.18) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    animation: sankofa-shine 3.5s ease-in-out infinite;
+  }
+  @keyframes sankofa-shine {
+    0% { transform: translateX(-100%); }
+    60% { transform: translateX(120%); }
+    100% { transform: translateX(120%); }
+  }
+
+  .sankofa-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #2dd4bf;
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+    animation: sankofa-pulse 1.8s ease-out infinite;
+  }
+  @keyframes sankofa-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.55); }
+    70% { box-shadow: 0 0 0 14px rgba(45, 212, 191, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0); }
+  }
+
+  .sankofa-orbit {
+    animation: sankofa-orbit 18s linear infinite;
+  }
+  @keyframes sankofa-orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .sankofa-float {
+    animation: sankofa-float 6s ease-in-out infinite;
+  }
+  @keyframes sankofa-float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
+  }
+
+  .sankofa-marquee {
+    display: flex;
+    width: max-content;
+    animation: sankofa-marquee 40s linear infinite;
+  }
+  @keyframes sankofa-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .sankofa-tile-3d {
+    perspective: 1200px;
+  }
+  .sankofa-tile-3d-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .sankofa-tile-3d:hover .sankofa-tile-3d-inner {
+    transform: rotateY(8deg) rotateX(-6deg) translateZ(20px);
+  }
+
+  .sankofa-scroll-fade {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+
+  .sankofa-adinkra {
+    background-image:
+      radial-gradient(
+        circle at 25% 25%,
+        rgba(212, 175, 55, 0.08) 0,
+        rgba(212, 175, 55, 0.08) 2px,
+        transparent 3px
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(205, 127, 50, 0.06) 0,
+        rgba(205, 127, 50, 0.06) 2px,
+        transparent 3px
+      );
+    background-size: 36px 36px;
   }
 }
