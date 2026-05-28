@@ -4,10 +4,17 @@ export type Person = {
   id: string;
   firstName: string;
   lastName: string;
+  colonialName?: string;
   gender?: Gender;
   birthDate?: string;
   deathDate?: string;
   birthPlace?: string;
+  ethnie?: string;
+  village?: string;
+  region?: string;
+  country?: string;
+  colony?: string;
+  plantation?: string;
   notes?: string;
   fatherId?: string;
   motherId?: string;
@@ -17,7 +24,13 @@ export type ArchiveType =
   | "fugitif"
   | "affranchissement"
   | "esclave"
-  | "migration";
+  | "migration"
+  | "vente"
+  | "paroissial"
+  | "navire"
+  | "judiciaire"
+  | "certificat"
+  | "militaire";
 
 export type ArchiveRecord = {
   id: string;
@@ -29,6 +42,40 @@ export type ArchiveRecord = {
   origin?: string;
   destination?: string;
   owner?: string;
+  ethnie?: string;
+  plantation?: string;
+  ship?: string;
+  /** Juridiction (utile pour les fiches judiciaires) */
+  court?: string;
+  /** Décision rendue */
+  verdict?: string;
+  /** Figures associées : avocats, prévenus, juges, témoins */
+  figures?: string[];
+  /** Référence d'archive précise (cote) */
+  archiveRef?: string;
+  /** Sources externes (URL ou citation de base) */
+  externalLinks?: { label: string; url?: string }[];
   source: string;
   notes?: string;
+};
+
+export type TestimonyCategory =
+  | "Résistance"
+  | "Marronnage"
+  | "Spiritualité"
+  | "Colonisation"
+  | "Héritage culturel"
+  | "Diaspora"
+  | "Transmission";
+
+export type Testimony = {
+  id: string;
+  title: string;
+  author: string;
+  category: TestimonyCategory;
+  language?: string;
+  durationSec?: number;
+  audioUrl?: string;
+  text?: string;
+  createdAt: string;
 };

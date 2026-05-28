@@ -13,6 +13,8 @@ export function ArchiveBrowser({ type }: Props) {
   const labels = ARCHIVE_LABELS[type];
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
+  const [ethnie, setEthnie] = useState("");
+  const [plantation, setPlantation] = useState("");
   const [period, setPeriod] = useState("");
 
   const all = useMemo(
@@ -20,18 +22,28 @@ export function ArchiveBrowser({ type }: Props) {
     [type],
   );
 
-  const locations = useMemo(() => {
-    const set = new Set<string>();
+  const facets = useMemo(() => {
+    const locs = new Set<string>();
+    const eths = new Set<string>();
+    const plants = new Set<string>();
     for (const r of all) {
-      if (r.location) set.add(r.location);
+      if (r.location) locs.add(r.location);
+      if (r.ethnie) eths.add(r.ethnie);
+      if (r.plantation) plants.add(r.plantation);
     }
-    return Array.from(set).sort();
+    return {
+      locations: [...locs].sort(),
+      ethnies: [...eths].sort(),
+      plantations: [...plants].sort(),
+    };
   }, [all]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return all.filter((r) => {
       if (location && r.location !== location) return false;
+      if (ethnie && r.ethnie !== ethnie) return false;
+      if (plantation && r.plantation !== plantation) return false;
       if (period) {
         const year = r.date ? Number(r.date.slice(0, 4)) : null;
         if (!year) return false;
@@ -48,6 +60,9 @@ export function ArchiveBrowser({ type }: Props) {
         r.origin,
         r.destination,
         r.owner,
+        r.ethnie,
+        r.plantation,
+        r.ship,
         r.notes,
         r.source,
         r.location,
@@ -57,7 +72,10 @@ export function ArchiveBrowser({ type }: Props) {
         .toLowerCase();
       return haystack.includes(q);
     });
-  }, [all, query, location, period]);
+  }, [all, query, location, ethnie, plantation, period]);
+
+  const hasEthnie = facets.ethnies.length > 0;
+  const hasPlantation = facets.plantations.length > 0;
 
   return (
     <section>
@@ -74,8 +92,8 @@ export function ArchiveBrowser({ type }: Props) {
         </p>
       </header>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-[2fr_1fr_1fr]">
-        <label className="block">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <label className="block lg:col-span-2">
           <span className="mb-1 block text-xs uppercase tracking-widest text-[var(--color-muted)]">
             Rechercher
           </span>
@@ -87,46 +105,47 @@ export function ArchiveBrowser({ type }: Props) {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] py-2 pl-9 pr-3 text-sm outline-none focus:border-[var(--color-primary-400)]"
-              placeholder="Nom, origine, lieu, propriétaire…"
+              className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] py-2 pl-9 pr-3 text-sm outline-none focus:border-[var(--color-gold-500)]"
+              placeholder="Nom, ethnie, plantation, navire, source…"
             />
           </div>
         </label>
 
-        <label className="block">
-          <span className="mb-1 block text-xs uppercase tracking-widest text-[var(--color-muted)]">
-            Lieu
-          </span>
-          <select
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none focus:border-[var(--color-primary-400)]"
-          >
-            <option value="">Tous les lieux</option>
-            {locations.map((l) => (
-              <option key={l} value={l}>
-                {l}
-              </option>
-            ))}
-          </select>
-        </label>
+        <FilterSelect
+          label="Lieu"
+          value={location}
+          onChange={setLocation}
+          options={facets.locations}
+          placeholder="Tous les lieux"
+        />
 
-        <label className="block">
-          <span className="mb-1 block text-xs uppercase tracking-widest text-[var(--color-muted)]">
-            Période
-          </span>
-          <select
-            value={period}
-            onChange={(e) => setPeriod(e.target.value)}
-            className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none focus:border-[var(--color-primary-400)]"
-          >
-            <option value="">Toutes périodes</option>
-            <option value="<1800">Avant 1800</option>
-            <option value="1800-1850">1800 — 1850</option>
-            <option value="1850-1900">1850 — 1900</option>
-            <option value=">1900">Après 1900</option>
-          </select>
-        </label>
+        <FilterSelect
+          label="Période"
+          value={period}
+          onChange={setPeriod}
+          options={["<1800", "1800-1850", "1850-1900", ">1900"]}
+          placeholder="Toutes périodes"
+        />
+
+        {hasEthnie && (
+          <FilterSelect
+            label="Ethnie"
+            value={ethnie}
+            onChange={setEthnie}
+            options={facets.ethnies}
+            placeholder="Toutes les ethnies"
+          />
+        )}
+
+        {hasPlantation && (
+          <FilterSelect
+            label="Plantation"
+            value={plantation}
+            onChange={setPlantation}
+            options={facets.plantations}
+            placeholder="Toutes les plantations"
+          />
+        )}
       </div>
 
       <p className="mt-6 text-sm text-[var(--color-muted)]">
@@ -140,8 +159,7 @@ export function ArchiveBrowser({ type }: Props) {
         ))}
         {filtered.length === 0 && (
           <p className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/40 p-6 text-sm text-[var(--color-muted)] md:col-span-2">
-            Aucune fiche ne correspond à votre recherche. Essayez d&apos;élargir
-            les critères.
+            Aucune fiche ne correspond à votre recherche.
           </p>
         )}
       </div>
@@ -149,29 +167,90 @@ export function ArchiveBrowser({ type }: Props) {
   );
 }
 
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  options,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  placeholder: string;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-xs uppercase tracking-widest text-[var(--color-muted)]">
+        {label}
+      </span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none focus:border-[var(--color-gold-500)]"
+      >
+        <option value="">{placeholder}</option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 function RecordCard({ record }: { record: ArchiveRecord }) {
   return (
     <article className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/50 p-5">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-base font-semibold">{record.name}</h3>
-          <p className="mt-0.5 text-xs text-[var(--color-muted)]">
-            {[record.date, record.age, record.location]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        </div>
-      </div>
+      <h3 className="font-serif text-lg font-semibold">{record.name}</h3>
+      <p className="mt-0.5 text-xs text-[var(--color-muted)]">
+        {[record.date, record.age, record.location]
+          .filter(Boolean)
+          .join(" · ")}
+      </p>
 
       <dl className="mt-4 space-y-2 text-sm">
-        {record.origin && (
-          <Row label="Origine" value={record.origin} />
-        )}
+        {record.court && <Row label="Juridiction" value={record.court} />}
+        {record.origin && <Row label="Origine" value={record.origin} />}
         {record.destination && (
           <Row label="Destination" value={record.destination} />
         )}
+        {record.ethnie && <Row label="Ethnie" value={record.ethnie} />}
+        {record.plantation && (
+          <Row label="Plantation" value={record.plantation} />
+        )}
+        {record.ship && <Row label="Navire" value={record.ship} />}
         {record.owner && <Row label="Propriétaire" value={record.owner} />}
       </dl>
+
+      {record.verdict && (
+        <div className="mt-4 rounded-lg border border-[var(--color-bronze-500)]/40 bg-[var(--color-earth-700)]/30 p-3">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-gold-400)]">
+            Verdict
+          </p>
+          <p className="mt-1 text-sm">{record.verdict}</p>
+        </div>
+      )}
+
+      {record.figures && record.figures.length > 0 && (
+        <div className="mt-3">
+          <p className="text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
+            Figures
+          </p>
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            {record.figures.map((f) => (
+              <span
+                key={f}
+                className="rounded-full border border-[var(--color-bronze-500)]/40 bg-[var(--color-surface-elevated)]/60 px-2 py-0.5 text-[11px]"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {record.notes && (
         <p className="mt-3 border-l-2 border-[var(--color-gold-500)] pl-3 text-sm text-[var(--color-muted)]">
@@ -179,9 +258,36 @@ function RecordCard({ record }: { record: ArchiveRecord }) {
         </p>
       )}
 
-      <p className="mt-4 text-xs uppercase tracking-widest text-[var(--color-gold-400)]">
+      {record.archiveRef && (
+        <p className="mt-3 font-mono text-[11px] text-[var(--color-bronze-300)]">
+          Cote · {record.archiveRef}
+        </p>
+      )}
+
+      <p className="mt-3 text-xs uppercase tracking-widest text-[var(--color-gold-400)]">
         Source · {record.source}
       </p>
+
+      {record.externalLinks && record.externalLinks.length > 0 && (
+        <ul className="mt-3 space-y-1 text-xs">
+          {record.externalLinks.map((l) => (
+            <li key={l.label}>
+              {l.url ? (
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-gold-400)] underline-offset-2 hover:underline"
+                >
+                  ↗ {l.label}
+                </a>
+              ) : (
+                <span className="text-[var(--color-muted)]">↗ {l.label}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </article>
   );
 }
