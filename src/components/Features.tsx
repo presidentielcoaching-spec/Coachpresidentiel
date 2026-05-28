@@ -53,7 +53,7 @@ export function Features() {
           {FEATURES.map(({ icon: Icon, title, description, accent }) => (
             <article
               key={title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated p-6 transition hover:border-primary-400/60 hover:bg-surface-elevated/80"
+              className="glass group relative overflow-hidden rounded-2xl p-6 transition hover:border-gold-500/40 hover:shadow-2xl hover:shadow-primary-900/40"
             >
               <div
                 className={`absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br ${accent} blur-2xl transition group-hover:scale-110`}

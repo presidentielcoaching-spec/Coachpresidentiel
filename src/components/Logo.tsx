@@ -1,23 +1,37 @@
 type LogoProps = {
   size?: number;
   showTagline?: boolean;
+  /** "full" : 3 mots — "short" : "Notre héritage · Notre futur" — "off" : aucun */
+  tagline?: "full" | "short" | "off";
   className?: string;
 };
 
-export function Logo({ size = 44, showTagline = true, className }: LogoProps) {
+export function Logo({
+  size = 44,
+  showTagline = true,
+  tagline,
+  className,
+}: LogoProps) {
+  const taglineMode: "full" | "short" | "off" =
+    tagline ?? (showTagline ? "full" : "off");
+  const taglineText =
+    taglineMode === "short"
+      ? "Héritage · Futur"
+      : "Nos langues · Notre héritage · Notre futur";
+
   return (
     <div className={`flex items-center gap-3 ${className ?? ""}`}>
       <KemetMark size={size} />
-      <div className="flex flex-col leading-none">
-        <span className="font-display text-xl font-extrabold tracking-[0.06em] sm:text-2xl">
+      <div className="flex min-w-0 flex-col leading-none">
+        <span className="font-display whitespace-nowrap text-xl font-extrabold tracking-[0.06em] sm:text-2xl">
           <span className="text-gradient-gold">KEMET</span>
           <span className="text-foreground">LINGUA</span>{" "}
           <span className="text-african-green">A</span>
           <span className="text-african-orange">I</span>
         </span>
-        {showTagline && (
-          <span className="mt-1 text-[10px] font-light tracking-[0.22em] text-muted uppercase sm:text-[11px]">
-            Nos langues · Notre héritage · Notre futur
+        {taglineMode !== "off" && (
+          <span className="mt-1 truncate text-[10px] font-light tracking-[0.18em] text-muted uppercase sm:text-[11px]">
+            {taglineText}
           </span>
         )}
       </div>

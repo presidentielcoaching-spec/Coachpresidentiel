@@ -36,7 +36,7 @@ export function CTA() {
           />
           <button
             type="submit"
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-4 text-sm font-bold text-[#1a0f00] shadow-xl shadow-gold-500/25 transition hover:bg-gold-400"
+            className="glow-gold-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-4 text-sm font-bold text-[#1a0f00] shadow-xl shadow-gold-500/25 transition hover:bg-gold-400"
           >
             Commencer gratuitement
             <ArrowRight

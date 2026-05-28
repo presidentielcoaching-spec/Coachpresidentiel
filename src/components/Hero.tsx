@@ -6,7 +6,8 @@ export function Hero() {
       id="accueil"
       className="relative overflow-hidden bg-radial-purple pattern-kente"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-28">
+      <div className="gold-particles" aria-hidden="true" />
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-28">
         <div className="relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary-500/40 bg-primary-500/10 px-3 py-1 text-xs font-medium text-primary-200 sm:text-sm">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold-400" />
@@ -31,7 +32,7 @@ export function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="/signup"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-4 text-base font-semibold text-[#1a0f00] shadow-xl shadow-gold-500/25 transition hover:bg-gold-400"
+              className="glow-gold-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-4 text-base font-semibold text-[#1a0f00] shadow-xl shadow-gold-500/25 transition hover:bg-gold-400"
             >
               Commencer gratuitement
               <ArrowRight

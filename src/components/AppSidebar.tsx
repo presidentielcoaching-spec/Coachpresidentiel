@@ -44,7 +44,7 @@ export function AppSidebar({ userName, userLevel, userXp }: Props) {
     <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-border/60 bg-background/80 backdrop-blur lg:flex">
       <div className="px-5 pt-5">
         <Link href="/dashboard">
-          <Logo size={36} />
+          <Logo size={36} tagline="short" />
         </Link>
       </div>
 

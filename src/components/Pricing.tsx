@@ -116,7 +116,7 @@ export function Pricing() {
 
               <a
                 href="/signup"
-                className="mt-8 block w-full rounded-full bg-gold-500 px-5 py-3 text-center text-sm font-bold text-[#1a0f00] shadow-lg shadow-gold-500/25 transition hover:bg-gold-400"
+                className="glow-gold-hover mt-8 block w-full rounded-full bg-gold-500 px-5 py-3 text-center text-sm font-bold text-[#1a0f00] shadow-lg shadow-gold-500/25 transition hover:bg-gold-400"
               >
                 Passer Premium — 5€/mois
               </a>
